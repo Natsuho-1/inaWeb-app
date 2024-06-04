@@ -14,3 +14,10 @@ Route::post('/especialidades', [EspecialidadController::class, 'store'])->name('
 Route::get('/especialidades/{id}/edit', [EspecialidadController::class, 'edit'])->name('especialidades.edit');
 Route::put('/especialidades/{id}', [EspecialidadController::class, 'update'])->name('especialidades.update');
 Route::get('/especialidades/modify', [EspecialidadController::class, 'modify'])->name('especialidades.modify');
+
+use App\Http\Controllers\SeccionController;
+
+Route::get('/secciones', [SeccionController::class, 'index'])->name('secciones.index');
+Route::post('/secciones', [SeccionController::class, 'store'])->name('secciones.store');
+Route::get('/secciones/create', [SeccionController::class, 'create'])->name('secciones.create');
+Route::resource('secciones', SeccionController::class);

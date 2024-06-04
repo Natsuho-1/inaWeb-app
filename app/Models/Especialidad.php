@@ -7,5 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Especialidad extends Model
 {
-    use HasFactory;
+    protected $table = 'especialidades';
+    protected $primaryKey = 'idespecialidad';
+    public $incrementing = false;
+    public $timestamps = false;
+
+    protected $fillable = [
+        'idespecialidad',
+        'idedificio',
+        'nvl_especialidad',
+        'modalidad'
+    ];
+    public function secciones()
+    {
+        return $this->hasMany(Seccion::class, 'idespecialidad', 'idespecialidad');
+    }
 }

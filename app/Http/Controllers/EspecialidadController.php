@@ -8,11 +8,7 @@ class EspecialidadController extends Controller
 {
     public function index()
     {
-        $especialidades = [
-            ['id' => 1, 'nombre' => 'Ingeniería Informática', 'descripcion' => 'Descripción de Ingeniería Informática', 'creditos' => 180, 'duracion' => 4, 'estado' => 'activo'],
-            ['id' => 2, 'nombre' => 'Administración de Empresas', 'descripcion' => 'Descripción de Administración de Empresas', 'creditos' => 150, 'duracion' => 3, 'estado' => 'activo'],
-            ['id' => 3, 'nombre' => 'Medicina', 'descripcion' => 'Descripción de Medicina', 'creditos' => 240, 'duracion' => 6, 'estado' => 'activo']
-        ];
+        $especialidades = Especialidad::all();
         return view('especialidades.index', compact('especialidades'));
     }
 
@@ -23,27 +19,39 @@ class EspecialidadController extends Controller
 
     public function store(Request $request)
     {
-        // Aquí normalmente guardarías la especialidad en la base de datos
-        return redirect()->route('especialidades.index');
+        $request->validate([
+            'idespecialidad' => 'required|string|max:6|unique:especialidades,idespecialidad',
+            'nombre' => 'required|string|max:255',
+            'descripcion' => 'nullable|string',
+            'creditos' => 'required|integer',
+            'duracion' => 'required|integer',
+            'estado' => 'required|string',
+        ]);
+
+        Especialidad::create($request->all());
+
+        return redirect()->route('especialidades.index')->with('success', 'Especialidad creada con éxito.');
     }
 
-    public function edit($id)
+    public function edit(Especialidad $especialidad)
     {
-        $especialidad = [
-            'id' => $id, 
-            'nombre' => 'Ingeniería Informática', 
-            'descripcion' => 'Descripción de Ingeniería Informática', 
-            'creditos' => 180, 
-            'duracion' => 4, 
-            'estado' => 'activo'
-        ];
         return view('especialidades.edit', compact('especialidad'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Especialidad $especialidad)
     {
-        // Aquí normalmente actualizarías la especialidad en la base de datos
-        return redirect()->route('especialidades.index');
+        $request->validate([
+            'idespecialidad' => 'required|string|max:6|unique:especialidades,idespecialidad,' . $especialidad->idespecialidad . ',idespecialidad',
+            'nombre' => 'required|string|max:255',
+            'descripcion' => 'nullable|string',
+            'creditos' => 'required|integer',
+            'duracion' => 'required|integer',
+            'estado' => 'required|string',
+        ]);
+
+        $especialidad->update($request->all());
+
+        return redirect()->route('especialidades.index')->with('success', 'Especialidad actualizada con éxito.');
     }
 
     public function modify()
