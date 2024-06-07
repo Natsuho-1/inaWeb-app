@@ -94,10 +94,6 @@
                     <a href="{{ route('secciones.create') }}" class="nav-link"><i class="bi bi-patch-plus-fill"></i>
                         Agregar Seccion</a>
                 </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link"><i class="bi bi-pencil-square"></i>
-                        Modificar Seccion</a>
-                </li>
             </ul>
         </div>
         <div class="content-area main-content">

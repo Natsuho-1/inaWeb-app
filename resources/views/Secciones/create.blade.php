@@ -15,7 +15,7 @@
             <label for="idespecialidad" class="form-label">Especialidad</label>
             <select class="form-select" id="idespecialidad" name="idespecialidad" required>
                 @foreach($especialidades as $especialidad)
-                    <option value="{{ $especialidad->idespecialidad }}">{{ $especialidad->modalidad }}</option>
+                    <option value="{{ $especialidad->idespecialidad }}">{{ $especialidad->descripcionspecialidad }}</option>
                 @endforeach
             </select>
         </div>

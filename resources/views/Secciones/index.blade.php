@@ -29,15 +29,10 @@
                     <td>{{ $index + 1 }}</td>
                     <td>{{ $seccion->idseccion }}</td>
                     <td>{{ $seccion->seccion }}</td>
-                    <td>{{ $seccion->especialidad->nvl_especialidad ?? 'N/A' }}</td>
+                    <td>{{ $seccion->especialidad->descripcionspecialidad ?? 'N/A' }}</td>
                     <td>{{ $seccion->aula->nvl_especialidad ?? 'N/A' }}</td>
                     <td>
                         <a href="{{ route('secciones.edit', $seccion->idseccion) }}" class="btn btn-sm btn-warning">Editar</a>
-                        <form action="{{ route('secciones.destroy', $seccion->idseccion) }}" method="POST" style="display:inline-block;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
-                        </form>
                     </td>
                 </tr>
             @endforeach
