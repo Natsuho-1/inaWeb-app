@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('creditos');
             $table->integer('duracion');
             $table->string('estado');
-            $table->timestamps();
+            
         });
     }
 

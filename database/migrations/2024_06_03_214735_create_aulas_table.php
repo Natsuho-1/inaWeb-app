@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->integer('capacidad');
             $table->string('ubicacion')->nullable();
-            $table->timestamps();
+            
         });
     }
 

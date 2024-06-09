@@ -19,4 +19,8 @@ class Aula extends Model
         'capacidad',
         'ubicacion'
     ];
+    public function secciones()
+    {
+        return $this->hasMany(Seccion::class, 'idaula', 'idaula');
+    }
 }
