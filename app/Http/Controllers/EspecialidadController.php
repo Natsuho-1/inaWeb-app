@@ -3,56 +3,102 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Especialidad;
+use Illuminate\Support\Facades\Log;
 
 class EspecialidadController extends Controller
 {
+    protected $modalidades = ['Virtual', 'Presencial', 'A Distancia'];
+    protected $niveles = ['Básica', 'Bachillerato', 'Superior'];
+
     public function index()
     {
-        $especialidades = [
-            ['id' => 1, 'nombre' => 'Ingeniería Informática', 'descripcion' => 'Descripción de Ingeniería Informática', 'creditos' => 180, 'duracion' => 4, 'estado' => 'activo'],
-            ['id' => 2, 'nombre' => 'Administración de Empresas', 'descripcion' => 'Descripción de Administración de Empresas', 'creditos' => 150, 'duracion' => 3, 'estado' => 'activo'],
-            ['id' => 3, 'nombre' => 'Medicina', 'descripcion' => 'Descripción de Medicina', 'creditos' => 240, 'duracion' => 6, 'estado' => 'activo']
-        ];
+        Log::info('Entrando al método index');
+        $especialidades = Especialidad::all();
+        Log::info('Especialidades obtenidas', ['especialidades' => $especialidades]);
         return view('especialidades.index', compact('especialidades'));
     }
 
     public function create()
     {
-        return view('especialidades.create');
+        Log::info('Entrando al método create');
+        $modalidades = $this->modalidades;
+        $niveles = $this->niveles;
+        return view('especialidades.create', compact('modalidades', 'niveles'));
     }
 
     public function store(Request $request)
     {
-        // Aquí normalmente guardarías la especialidad en la base de datos
-        return redirect()->route('especialidades.index');
+        Log::info('Datos recibidos en la solicitud', $request->all());
+
+        $validatedData = $request->validate([
+            'idespecialidad' => 'required|max:6',
+            'descripcionspecialidad' => 'required|max:25',
+            'modalidad' => 'required',
+            'nombrenivel' => 'required'
+        ]);
+
+        Log::info('Datos validados correctamente', $validatedData);
+
+        try {
+            $especialidad = new Especialidad();
+            $especialidad->idespecialidad = $validatedData['idespecialidad'];
+            $especialidad->descripcionspecialidad = $validatedData['descripcionspecialidad'];
+            $especialidad->modalidad = $validatedData['modalidad'];
+            $especialidad->nombrenivel = $validatedData['nombrenivel'];
+
+            $especialidad->save();
+            Log::info('Especialidad creada correctamente', ['especialidad' => $especialidad]);
+        } catch (\Exception $e) {
+            Log::error('Error al crear la especialidad', ['error' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
+            return redirect()->route('especialidades.create')->with('error', 'Error al crear la especialidad');
+        }
+
+        return redirect()->route('especialidades.index')->with('success', 'Especialidad creada correctamente');
     }
 
     public function edit($id)
     {
-        $especialidad = [
-            'id' => $id, 
-            'nombre' => 'Ingeniería Informática', 
-            'descripcion' => 'Descripción de Ingeniería Informática', 
-            'creditos' => 180, 
-            'duracion' => 4, 
-            'estado' => 'activo'
-        ];
-        return view('especialidades.edit', compact('especialidad'));
+        Log::info('Entrando al método edit', ['id' => $id]);
+        $especialidad = Especialidad::findOrFail($id);
+        $modalidades = $this->modalidades;
+        $niveles = $this->niveles;
+        return view('especialidades.edit', compact('especialidad', 'modalidades', 'niveles'));
     }
 
     public function update(Request $request, $id)
     {
-        // Aquí normalmente actualizarías la especialidad en la base de datos
-        return redirect()->route('especialidades.index');
+        Log::info('Datos recibidos en la solicitud', $request->all());
+
+        $validatedData = $request->validate([
+            'descripcionspecialidad' => 'required|max:25',
+            'modalidad' => 'required',
+            'nombrenivel' => 'required'
+        ]);
+
+        Log::info('Datos validados correctamente', $validatedData);
+
+        try {
+            $especialidad = Especialidad::findOrFail($id);
+            $especialidad->update($validatedData);
+            Log::info('Especialidad actualizada correctamente');
+        } catch (\Exception $e) {
+            Log::error('Error al actualizar la especialidad', ['error' => $e->getMessage()]);
+            return redirect()->route('especialidades.edit', $id)->with('error', 'Error al actualizar la especialidad');
+        }
+
+        return redirect()->route('especialidades.index')->with('success', 'Especialidad actualizada correctamente');
     }
 
     public function modify()
     {
-        $especialidades = [
-            ['id' => 1, 'nombre' => 'Ingeniería Informática', 'descripcion' => 'Descripción de Ingeniería Informática', 'creditos' => 180, 'duracion' => 4, 'estado' => 'activo'],
-            ['id' => 2, 'nombre' => 'Administración de Empresas', 'descripcion' => 'Descripción de Administración de Empresas', 'creditos' => 150, 'duracion' => 3, 'estado' => 'activo'],
-            ['id' => 3, 'nombre' => 'Medicina', 'descripcion' => 'Descripción de Medicina', 'creditos' => 240, 'duracion' => 6, 'estado' => 'activo']
-        ];
+        Log::info('Entrando al método modify');
+        $especialidades = Especialidad::all();
         return view('especialidades.modify', compact('especialidades'));
     }
 }
+
+
+
+
+
