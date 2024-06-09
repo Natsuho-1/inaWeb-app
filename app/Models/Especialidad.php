@@ -21,7 +21,15 @@ class Especialidad extends Model
         'modalidad',
         'nombrenivel'
     ];
+    public function grados()
+    {
+        return $this->hasMany(Grado::class, 'idespecialidad', 'idespecialidad');
+    }
 
+    public function secciones()
+    {
+        return $this->hasMany(Seccion::class, 'idespecialidad', 'idespecialidad');
+    }
     public $timestamps = false;  // Deshabilitar los timestamps
 }
 
