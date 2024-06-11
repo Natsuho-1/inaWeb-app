@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Nivel extends Model
 {
     use HasFactory;
-    protected $table = 'Niveles';
+    protected $table = 'Nivel';
     protected $primaryKey = 'idnivel';
+    public $incrementing = false;
     public $timestamps = false;
 
     protected $fillable = [
         'idnivel',
-        'nombreNivel'
+        'descripcionivel'
     ];
 
     public function especialidad()

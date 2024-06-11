@@ -63,9 +63,10 @@ class GrupoController extends Controller
      */
     public function edit($id)
     {
+        $estados = $this->estados;
         Log::info('Entrando al método edit', ['id' => $id]);
         $grupo = Grupo::findOrFail($id);
-        return view('grupos.edit', compact('grupo'));
+        return view('grupos.edit', compact('grupo','estados'));
     }
 
     /**

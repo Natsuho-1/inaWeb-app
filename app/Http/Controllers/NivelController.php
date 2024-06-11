@@ -39,8 +39,8 @@ class NivelController extends Controller
     {
         //
         $request->validate([
-            'idnivel' => 'required|int|unique:niveles,idnivel',
-            'nombreNivel' => 'required|string|max:25',
+            'idnivel' => 'required|string||max:6|unique:nivel,idnivel',
+            'descripcionivel' => 'required|string|max:50',
         ]);
 
         Nivel::create($request->all());
@@ -76,8 +76,7 @@ class NivelController extends Controller
         Log::info('Datos recibidos en la solicitud', $request->all());
 
         $validatedData = $request->validate([
-            'idnivel' => 'required|int|unique:niveles,idnivel',
-            'nombreNivel' => 'required'
+            'descripcionivel' => 'required|string|max:50'
         ]);
 
         Log::info('Datos validados correctamente', $validatedData);

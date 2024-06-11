@@ -15,10 +15,19 @@
             <input type="text" class="form-control" id="descripciongrupo" name="descripciongrupo" required>
         </div>
         <div class="mb-3">
-            <label for="estado" class="form-label">Modalidad</label>
+            <label for="estado" class="form-label">Estado</label>
             <select class="form-select" id="estado" name="estado" required>
-                @foreach($estados as $index =>$estado)
-                    <option value="{{ $index + 1 }}">{{ $estado }}</option>
+                @section(
+                    $cont=1
+                )
+                @endsection
+                @foreach($estados as $estado)
+                    <option value="{{ $cont }}">{{ $estado }}</option>
+                    @section(
+                        $cont=$cont-1
+                    )
+                    
+                    @endsection
                 @endforeach
             </select>
         </div>

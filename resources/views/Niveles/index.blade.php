@@ -23,7 +23,7 @@
                 <tr>
                     <td>{{ $index + 1 }}</td>
                     <td>{{ $nivel->idnivel }}</td>
-                    <td>{{ $nivel->nombreNivel }}</td>
+                    <td>{{ $nivel->descripcionivel }}</td>
                     <td>
                         <a href="{{ route('niveles.edit', $nivel->idnivel) }}" class="btn btn-sm btn-warning">Editar</a>
                     </td>
