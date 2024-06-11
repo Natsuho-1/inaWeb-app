@@ -8,18 +8,22 @@
     <table class="table">
         <thead>
             <tr>
-                <th>#</th>
-                <th>Nombre</th>
+                <th>ID</th>
+                <th>Descripción</th>
+                <th>Modalidad</th>
+                <th>Nivel</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($especialidades as $index => $especialidad)
+            @foreach($especialidades as $especialidad)
                 <tr>
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ $especialidad['nombre'] }}</td>
+                    <td>{{ $especialidad->idespecialidad }}</td>
+                    <td>{{ $especialidad->descripcionspecialidad }}</td>
+                    <td>{{ $especialidad->modalidad }}</td>
+                    <td>{{ $especialidad->nombrenivel }}</td>
                     <td>
-                        <a href="{{ route('especialidades.edit', $especialidad['id']) }}" class="btn btn-primary">Editar</a>
+                        <a href="{{ route('especialidades.edit', $especialidad->idespecialidad) }}" class="btn btn-primary">Editar</a>
                     </td>
                 </tr>
             @endforeach
@@ -27,4 +31,3 @@
     </table>
 </div>
 @endsection
-

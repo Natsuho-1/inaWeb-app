@@ -1,11 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 use App\Http\Controllers\EspecialidadController;
 
 Route::get('/especialidades', [EspecialidadController::class, 'index'])->name('especialidades.index');
@@ -15,7 +10,39 @@ Route::get('/especialidades/{id}/edit', [EspecialidadController::class, 'edit'])
 Route::put('/especialidades/{id}', [EspecialidadController::class, 'update'])->name('especialidades.update');
 Route::get('/especialidades/modify', [EspecialidadController::class, 'modify'])->name('especialidades.modify');
 
+
 use App\Http\Controllers\EstudiantesController;
 
 Route::get('/Estudiantes', [EstudiantesController::class, 'index'])->name('Estudiantes.index');
 Route::get('/Estudiantes/create', [EstudiantesController::class, 'create'])->name('Estudiantes.create');
+
+//GRUPOS ROUTE
+use App\Http\Controllers\GrupoController;
+
+//MOSTRAR tabla y CREAR nuevo grupo
+Route::get('/grupos', [GrupoController::class, 'index'])->name('grupos.index');
+Route::get('/grupos/create', [GrupoController::class, 'create'])->name('grupos.create');
+Route::post('/grupos', [GrupoController::class, 'store'])->name('grupos.store');
+//modificar
+Route::get('/grupos/{id}/edit', [GrupoController::class, 'edit'])->name('grupos.edit');
+Route::put('/grupos/{id}', [GrupoController::class, 'update'])->name('grupos.update');
+
+//NIVELES ROUTE
+use App\Http\Controllers\NivelController;
+
+//MOSTRAR tabla y CREAR nuevo grupo
+Route::get('/niveles', [NivelController::class, 'index'])->name('niveles.index');
+Route::get('/niveles/create', [NivelController::class, 'create'])->name('niveles.create');
+Route::post('/niveles', [NivelController::class, 'store'])->name('niveles.store');
+//modificar
+Route::get('/niveles/{id}/edit', [NivelController::class, 'edit'])->name('niveles.edit');
+Route::put('/niveles/{id}', [NivelController::class, 'update'])->name('niveles.update');
+
+//SECCIONES ROUTE
+use App\Http\Controllers\SeccionController;
+
+Route::get('/secciones', [SeccionController::class, 'index'])->name('secciones.index');
+Route::post('/secciones', [SeccionController::class, 'store'])->name('secciones.store');
+Route::get('/secciones/create', [SeccionController::class, 'create'])->name('secciones.create');
+Route::resource('secciones', SeccionController::class);
+
