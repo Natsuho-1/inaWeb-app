@@ -8,30 +8,30 @@
     <form action="{{ route('especialidades.store') }}" method="POST">
         @csrf
         <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre de la Especialidad</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" required>
+            <label for="idespecialidad" class="form-label">ID de la Especialidad</label>
+            <input type="text" class="form-control" id="idespecialidad" name="idespecialidad" required>
         </div>
         <div class="mb-3">
-            <label for="descripcion" class="form-label">Descripción</label>
-            <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required></textarea>
+            <label for="descripcionspecialidad" class="form-label">Descripción de la Especialidad</label>
+            <input type="text" class="form-control" id="descripcionspecialidad" name="descripcionspecialidad" required>
         </div>
         <div class="mb-3">
-            <label for="creditos" class="form-label">Número de Créditos</label>
-            <input type="number" class="form-control" id="creditos" name="creditos" required>
+            <label for="modalidad" class="form-label">Modalidad</label>
+            <select class="form-select" id="modalidad" name="modalidad" required>
+                @foreach($modalidades as $modalidad)
+                    <option value="{{ $modalidad }}">{{ $modalidad }}</option>
+                @endforeach
+            </select>
         </div>
         <div class="mb-3">
-            <label for="duracion" class="form-label">Duración en Años</label>
-            <input type="number" class="form-control" id="duracion" name="duracion" required>
-        </div>
-        <div class="mb-3">
-            <label for="estado" class="form-label">Estado</label>
-            <select class="form-select" id="estado" name="estado" required>
-                <option value="activo">Activo</option>
-                <option value="inactivo">Inactivo</option>
+            <label for="nombrenivel" class="form-label">Nivel</label>
+            <select class="form-select" id="nombrenivel" name="nombrenivel" required>
+                @foreach($niveles as $nivel)
+                    <option value="{{ $nivel }}">{{ $nivel }}</option>
+                @endforeach
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
 </div>
 @endsection
-

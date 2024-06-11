@@ -1,11 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 use App\Http\Controllers\EspecialidadController;
 
 Route::get('/especialidades', [EspecialidadController::class, 'index'])->name('especialidades.index');
