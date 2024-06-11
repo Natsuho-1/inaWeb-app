@@ -6,7 +6,6 @@
 @section('content')
 <div class="container">
     <h1>Lista de Secciones</h1>
-    <a href="{{ route('secciones.create') }}" class="btn btn-primary">Agregar Sección</a>
     @if(session('success'))
         <div class="alert alert-success mt-3">
             {{ session('success') }}
@@ -19,7 +18,7 @@
                 <th>ID Sección</th>
                 <th>Grado</th>
                 <th>Especialidad</th>
-                <th>Aula</th>
+                <th>Grupo</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -30,7 +29,7 @@
                     <td>{{ $seccion->idseccion }}</td>
                     <td>{{ $seccion->grado->descripciongrado ?? 'N/A' }}</td>
                     <td>{{ $seccion->especialidad->descripcionspecialidad ?? 'N/A' }}</td>
-                    <td>{{ $seccion->aula->nvl_especialidad ?? 'N/A' }}</td>
+                    <td>{{ $seccion->grupo->descripciongrupo ?? 'N/A' }}</td>
                     <td>
                         <a href="{{ route('secciones.edit', $seccion->idseccion) }}" class="btn btn-sm btn-warning">Editar</a>
                     </td>

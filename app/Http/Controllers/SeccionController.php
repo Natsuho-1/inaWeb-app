@@ -7,6 +7,7 @@ use App\Models\Seccion;
 use App\Models\Especialidad;
 use App\Models\Aula;
 use App\Models\Grado;
+use App\Models\Grupo;
 use Illuminate\Http\Request;
 
 class SeccionController extends Controller
@@ -14,7 +15,7 @@ class SeccionController extends Controller
     public function index()
     {
         // Obtener todas las secciones con sus relaciones
-        $secciones = Seccion::with(['especialidad', 'aula','grado'])->get();
+        $secciones = Seccion::with(['especialidad','grado','grupo'])->get();
 
         // Pasar los datos a la vista
         return view('secciones.index', compact('secciones'));
@@ -25,10 +26,10 @@ class SeccionController extends Controller
         // Obtener todas las especialidades y aulas para el formulario
         $secciones = Seccion::all();
         $especialidades = Especialidad::all();
-        $aulas = Aula::all();
         $grados = Grado::all();
+        $grupos = Grupo::all();
         // Pasar los datos a la vista
-        return view('secciones.create', compact('secciones','especialidades', 'aulas','grados'));
+        return view('secciones.create', compact('secciones','especialidades','grados','grupos'));
     }
     public function store(Request $request)
     {
@@ -36,18 +37,23 @@ class SeccionController extends Controller
         $request->validate([
             'idgrado' => 'required|string|max:6',
             'idespecialidad' => 'required|string|max:6',
-            'idaula' => 'required|string|max:6',
+            'idgrupo' => 'required|string|max:6',
         ]);
     
         // Generar un ID de sección aleatorio de 6 dígitos
-        $idseccion = $this->generateRandomId();
+        $lastSeccion = Seccion::orderBy('idseccion', 'desc')->first();
+    $newIdSeccion = $lastSeccion ? $lastSeccion->idseccion + 1 : 100000; // Iniciar desde 100000 si no hay registros
+    while (Seccion::where('idseccion', $newIdSeccion)->exists()) {
+        $newIdSeccion++;
+    }
     
         // Crear la nueva sección con el ID de sección generado y los demás campos del request
         Seccion::create([
-            'idseccion' => $idseccion,
+            'idseccion' => $newIdSeccion,
             'idgrado' => $request->input('idgrado'),
             'idespecialidad' => $request->input('idespecialidad'),
-            'idaula' => $request->input('idaula'),
+            'idaula' => 'AU0001',
+            'idgrupos' => $request->input('idgrupo')
             // Otros campos del request pueden ser añadidos aquí si es necesario
         ]);
     
@@ -63,10 +69,10 @@ class SeccionController extends Controller
     public function edit($idseccion)
     {
         $seccion = Seccion::findOrFail($idseccion);
-        $especialidades = Especialidad::all();
-        $aulas = Aula::all(); 
+        $especialidades = Especialidad::all(); 
         $grados = Grado::all();
-        return view('secciones.edit', compact('seccion','especialidades', 'aulas','grados'));
+        $grupos = Grupo::all();
+        return view('secciones.edit', compact('seccion','especialidades','grados','grupos'));
     }
 
     public function update(Request $request, $idseccion)
@@ -74,7 +80,8 @@ class SeccionController extends Controller
         $request->validate([
             'idgrado' => 'required|string|max:6',
             'idespecialidad' => 'required|string|max:6',
-            'idaula' => 'required|string|max:6',
+            'idaula' => 'AU0001',
+            'idgrupos' => 'required|string|max:6',
         ]);
 
         $seccion = Seccion::findOrFail($idseccion);

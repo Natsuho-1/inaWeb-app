@@ -29,13 +29,12 @@
                 @endforeach
             </select>
         </div>
-        
         <div class="mb-3">
-            <label for="idaula" class="form-label">Aula</label>
-            <select class="form-control" id="idaula" name="idaula" required>
-                @foreach($aulas as $aula)
-                    <option value="{{ $aula->idaula }}" {{ $aula->idaula == $seccion->idaula ? 'selected' : '' }}>
-                        {{ $aula->nvl_especialidad }}
+            <label for="idgrupo" class="form-label">Grupo</label>
+            <select class="form-control" id="idgrupos" name="idgrupos" required>
+                @foreach($grupos as $grupo)
+                    <option value="{{$grupo->idgrupos }}" {{ $grupo->idgrupos == $seccion->idgrupos ? 'selected' : '' }}>
+                        {{ $grupo->descripciongrupo }}
                     </option>
                 @endforeach
             </select>

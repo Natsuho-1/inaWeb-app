@@ -24,10 +24,10 @@
             </select>
         </div>
         <div class="mb-3">
-            <label for="idaula" class="form-label">Aula</label>
-            <select class="form-select" id="idaula" name="idaula" required>
-                @foreach($aulas as $aula)
-                    <option value="{{ $aula->idaula }}">{{ $aula->nvl_especialidad }} - {{ $aula->modalidad }}</option>
+            <label for="idgrupo" class="form-label">Grupo</label>
+            <select class="form-select" id="idgrupo" name="idgrupo" required>
+                @foreach($grupos as $grupo)
+                    <option value="{{ $grupo->idgrupos }}">{{ $grupo->descripciongrupo }}</option>
                 @endforeach
             </select>
         </div>

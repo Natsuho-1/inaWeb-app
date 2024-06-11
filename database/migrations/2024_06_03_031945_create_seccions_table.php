@@ -15,7 +15,7 @@ return new class extends Migration
             $table->char('idseccion', 6)->primary();
             $table->char('idgrado', 6);
             $table->char('idespecialidad', 6);
-            $table->char('idaula', 6);
+            $table->string('idaula', 6)->default('AU0001')->change();
             $table->char('idgrupos', 6);
             $table->string('estado', 2);
             $table->foreign('idgrado')->references('idgrado')->on('grado')->onUpdate('cascade');
