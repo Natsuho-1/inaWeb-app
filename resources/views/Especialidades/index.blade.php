@@ -11,7 +11,6 @@
                 <th>ID</th>
                 <th>Descripción</th>
                 <th>Modalidad</th>
-                <th>Nivel</th>
             </tr>
         </thead>
         <tbody>
@@ -20,7 +19,6 @@
                     <td>{{ $especialidad->idespecialidad }}</td>
                     <td>{{ $especialidad->descripcionspecialidad }}</td>
                     <td>{{ $especialidad->modalidad }}</td>
-                    <td>{{ $especialidad->nombrenivel }}</td>
                 </tr>
             @endforeach
         </tbody>

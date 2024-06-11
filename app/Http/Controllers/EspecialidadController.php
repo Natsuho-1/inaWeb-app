@@ -22,8 +22,7 @@ class EspecialidadController extends Controller
     public function create()
     {
         $modalidades = $this->modalidades;
-        $niveles = $this->niveles;
-return view('especialidades.create', compact('modalidades', 'niveles'));
+return view('especialidades.create', compact('modalidades'));
     }
 
     /**
@@ -43,13 +42,14 @@ return view('especialidades.create', compact('modalidades', 'niveles'));
     }
 
     public function edit($id)
+   
     {
         Log::info('Entrando al método edit', ['id' => $id]);
         $especialidad = Especialidad::findOrFail($id);
         $modalidades = $this->modalidades;
-        $niveles = $this->niveles;
-        return view('especialidades.edit', compact('especialidad', 'modalidades', 'niveles'));
+        return view('especialidades.edit', compact('especialidad', 'modalidades'));
     }
+    
 
     public function update(Request $request, $id)
     {
