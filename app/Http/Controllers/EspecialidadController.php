@@ -44,6 +44,7 @@ return view('especialidades.create', compact('modalidades', 'niveles'));
     }
 
     public function edit($id)
+   
     {
         Log::info('Entrando al método edit', ['id' => $id]);
         $especialidad = Especialidad::findOrFail($id);
@@ -51,6 +52,7 @@ return view('especialidades.create', compact('modalidades', 'niveles'));
         $niveles = $this->niveles;
         return view('especialidades.edit', compact('especialidad', 'modalidades', 'niveles'));
     }
+    
 
     public function update(Request $request, $id)
     {
