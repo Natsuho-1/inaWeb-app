@@ -11,6 +11,7 @@ class Seccion extends Model
     use HasFactory;
     protected $table = 'secciones';
     protected $primaryKey = 'idseccion';
+    public $incrementing = false;
     public $timestamps = false;
 
     protected $fillable = [
