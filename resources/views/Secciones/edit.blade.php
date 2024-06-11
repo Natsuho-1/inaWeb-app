@@ -1,7 +1,6 @@
 @extends('layouts.secciones')
 
 @section('title', 'Editar Sección')
-@extends('layouts.app')
 
 @section('content')
 <div class="container">

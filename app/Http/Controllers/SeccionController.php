@@ -23,21 +23,20 @@ class SeccionController extends Controller
     public function create()
     {
         // Obtener todas las especialidades y aulas para el formulario
+        $secciones = Seccion::all();
         $especialidades = Especialidad::all();
         $aulas = Aula::all();
         $grados = Grado::all();
         // Pasar los datos a la vista
-        return view('secciones.create', compact('especialidades', 'aulas','grados'));
+        return view('secciones.create', compact('secciones','especialidades', 'aulas','grados'));
     }
-
     public function store(Request $request)
     {
         // Validar y guardar la nueva sección
         $request->validate([
-            'idseccion' => 'required|string|max:6',
+            'idgrado' => 'required|string|max:6',
             'idespecialidad' => 'required|string|max:6',
             'idaula' => 'required|string|max:6',
-            'seccion' => 'required|string|max:50',
         ]);
     
         // Generar un ID de sección aleatorio de 6 dígitos
