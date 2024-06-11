@@ -14,7 +14,9 @@ class EspecialidadController extends Controller
 
     public function index()
     {
+        Log::info('Entrando al método index');
         $especialidades = Especialidad::all();
+        Log::info('Especialidades obtenidas', ['especialidades' => $especialidades]);
         return view('especialidades.index', compact('especialidades'));
     }
     public function create()
@@ -31,11 +33,9 @@ return view('especialidades.create', compact('modalidades', 'niveles'));
     {
         $request->validate([
             'idespecialidad' => 'required|string|max:6|unique:especialidades,idespecialidad',
-            'nombre' => 'required|string|max:255',
-            'descripcion' => 'nullable|string',
-            'creditos' => 'required|integer',
-            'duracion' => 'required|integer',
-            'estado' => 'required|string',
+            'descripcionspecialidad' => 'required|string|max:25',
+            'modalidad' => 'required|string|max:15',
+            'nombrenivel' => 'required|string|max:50',
         ]);
 
         Especialidad::create($request->all());
@@ -43,7 +43,7 @@ return view('especialidades.create', compact('modalidades', 'niveles'));
         return redirect()->route('especialidades.index')->with('success', 'Especialidad creada con éxito.');
     }
 
-    public function edit(Especialidad $especialidad)
+    public function edit($id)
     {
         Log::info('Entrando al método edit', ['id' => $id]);
         $especialidad = Especialidad::findOrFail($id);
@@ -52,7 +52,7 @@ return view('especialidades.create', compact('modalidades', 'niveles'));
         return view('especialidades.edit', compact('especialidad', 'modalidades', 'niveles'));
     }
 
-    public function update(Request $request, Especialidad $especialidad)
+    public function update(Request $request, $id)
     {
         Log::info('Datos recibidos en la solicitud', $request->all());
 
@@ -83,8 +83,3 @@ return view('especialidades.create', compact('modalidades', 'niveles'));
         return view('especialidades.modify', compact('especialidades'));
     }
 }
-
-
-
-
-
