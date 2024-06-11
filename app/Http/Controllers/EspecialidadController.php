@@ -32,7 +32,7 @@ return view('especialidades.create', compact('modalidades'));
     {
         $request->validate([
             'idespecialidad' => 'required|string|max:6|unique:especialidades,idespecialidad',
-            'descripcionspecialidad' => 'required|string|max:25',
+            'descripcionspecialidad' => 'required|string|max:100',
             'modalidad' => 'required|string|max:15',
         ]);
 
@@ -56,8 +56,8 @@ return view('especialidades.create', compact('modalidades'));
         Log::info('Datos recibidos en la solicitud', $request->all());
 
         $validatedData = $request->validate([
-            'descripcionspecialidad' => 'required|max:25',
-            'modalidad' => 'required',
+            'descripcionspecialidad' => 'required|max:100',
+            'modalidad' => 'required'
         ]);
 
         Log::info('Datos validados correctamente', $validatedData);
