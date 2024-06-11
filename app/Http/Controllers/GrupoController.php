@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 class GrupoController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource. mi rama
      */
     protected $estados = ['Activo', 'Inactivo'];
     public function index()
