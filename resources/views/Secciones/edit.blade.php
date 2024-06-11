@@ -8,33 +8,36 @@
     <form action="{{ route('secciones.update', $seccion->idseccion) }}" method="POST">
         @csrf
         @method('PUT')
+       
         <div class="mb-3">
-            <label for="idseccion" class="form-label">ID Sección</label>
-            <input type="text" class="form-control" id="idseccion" name="idseccion" value="{{ $seccion->idseccion }}" required>
+            <label for="idgrado" class="form-label">Grado</label>
+            <select class="form-control" id="idgrado" name="idgrado" required>
+                @foreach($grados as $grado)
+                    <option value="{{ $grado->idgrado }}" {{ $grado->idgrado == $seccion->idgrado ? 'selected' : '' }}>
+                        {{ $grado->descripciongrado }}
+                    </option>
+                @endforeach
+            </select>
         </div>
         <div class="mb-3">
             <label for="idespecialidad" class="form-label">Especialidad</label>
             <select class="form-control" id="idespecialidad" name="idespecialidad" required>
                 @foreach($especialidades as $especialidad)
                     <option value="{{ $especialidad->idespecialidad }}" {{ $especialidad->idespecialidad == $seccion->idespecialidad ? 'selected' : '' }}>
-                        {{ $especialidad->nvl_especialidad }}
+                        {{ $especialidad->descripcionspecialidad }}
                     </option>
                 @endforeach
             </select>
         </div>
         <div class="mb-3">
-            <label for="idaula" class="form-label">Aula</label>
-            <select class="form-control" id="idaula" name="idaula" required>
-                @foreach($aulas as $aula)
-                    <option value="{{ $aula->idaula }}" {{ $aula->idaula == $seccion->idaula ? 'selected' : '' }}>
-                        {{ $aula->nvl_especialidad }}
+            <label for="idgrupo" class="form-label">Grupo</label>
+            <select class="form-control" id="idgrupos" name="idgrupos" required>
+                @foreach($grupos as $grupo)
+                    <option value="{{$grupo->idgrupos }}" {{ $grupo->idgrupos == $seccion->idgrupos ? 'selected' : '' }}>
+                        {{ $grupo->descripciongrupo }}
                     </option>
                 @endforeach
             </select>
-        </div>
-        <div class="mb-3">
-            <label for="seccion" class="form-label">Nombre de la Sección</label>
-            <input type="text" class="form-control" id="seccion" name="seccion" value="{{ $seccion->seccion }}" required>
         </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>

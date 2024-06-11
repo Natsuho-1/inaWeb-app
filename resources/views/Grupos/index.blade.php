@@ -13,20 +13,20 @@
     <table class="table mt-3">
         <thead>
             <tr>
-                <th>#</th>
                 <th>ID Grupo</th>
                 <th>Nombre del Grupo</th>
+                <th>estado</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($grupos as $index => $grupo)
+            @foreach($grupos as $grupo)
                 <tr>
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ $grupo->idgrupo }}</td>
-                    <td>{{ $grupo->nombreGrupo }}</td>
+                    <td>{{ $grupo->idgrupos }}</td>
+                    <td>{{ $grupo->descripciongrupo }}</td>
+                    <td>{{ $grupo->estado }}</td>
                     <td>
-                        <a href="{{ route('grupos.edit', $grupo->idgrupo) }}" class="btn btn-sm btn-warning">Editar</a>
+                        <a href="{{ route('grupos.edit', $grupo->idgrupos) }}" class="btn btn-sm btn-warning">Editar</a>
                     </td>
                 </tr>
             @endforeach
