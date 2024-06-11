@@ -9,12 +9,14 @@ class Grupo extends Model
 {
     use HasFactory;
     protected $table = 'grupos';
-    protected $primaryKey = 'idgrupo';
+    protected $primaryKey = 'idgrupos';
+    public $incrementing = false;
     public $timestamps = false;
 
     protected $fillable = [
-        'idgrupo',
-        'nombreGrupo'
+        'idgrupos',
+        'descripciongrupo',
+        'estado'
     ];
 
     public function especialidad()
