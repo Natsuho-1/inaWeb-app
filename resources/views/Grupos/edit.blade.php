@@ -4,17 +4,20 @@
 @section('content')
 <div class="container">
     <h1>Editar Grupo</h1>
-    <form action="{{ route('grupos.update', $grupo->idgrupo) }}" method="POST">
+    <form action="{{ route('grupos.update', $grupo->idgrupos) }}" method="POST">
         @csrf
         @method('PUT')
+        <!--<div class="mb-3">
+            <label for="idgrupos" class="form-label">ID Grupo</label>
+            <input type="text" class="form-control" id="idgrupos" maxlength="6" disabled name="idgrupos" value="{{ $grupo->idgrupos }}" required>
+        </div>-->
         <div class="mb-3">
-            <label for="idgrupo" class="form-label">ID Grupo</label>
-            <input type="text" class="form-control" id="idgrupo" name="idgrupo" value="{{ $grupo->idgrupo }}" required>
+            <label for="descripciongrupo" class="form-label">Nombre del Grupo</label>
+            <input type="text" class="form-control" id="descripciongrupo" maxlength="50" name="descripciongrupo" value="{{ $grupo->descripciongrupo }}" required>
         </div>
-
         <div class="mb-3">
-            <label for="grupo" class="form-label">Nombre del Grupo</label>
-            <input type="text" class="form-control" id="nombreGrupo" name="nombreGrupo" value="{{ $grupo->nombreGrupo }}" required>
+            <label for="estado" class="form-label">estado</label>
+            <input type="text" class="form-control" id="estado" maxlength="50" name="estado" value="{{ $grupo->estado }}" required>
         </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>

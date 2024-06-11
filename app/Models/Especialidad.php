@@ -18,8 +18,7 @@ class Especialidad extends Model
     protected $fillable = [
         'idespecialidad',
         'descripcionspecialidad',
-        'modalidad',
-        'nombrenivel'
+        'modalidad'
     ];
     public function grados()
     {

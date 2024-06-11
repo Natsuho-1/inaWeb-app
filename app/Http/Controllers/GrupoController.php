@@ -11,6 +11,7 @@ class GrupoController extends Controller
     /**
      * Display a listing of the resource.
      */
+    protected $estados = ['Activo', 'Inactivo'];
     public function index()
     {
         //
@@ -26,10 +27,10 @@ class GrupoController extends Controller
     public function create()
     {
         //
-        $grupos = Grupo::all();
+        $estados = $this->estados;
 
         // Pasar los datos a la vista
-        return view('grupos.create');
+        return view('grupos.create', compact('estados'));
     }
 
     /**
@@ -39,8 +40,9 @@ class GrupoController extends Controller
     {
         //
         $request->validate([
-            'idgrupo' => 'required|int|unique:grupos,idgrupo',
-            'nombreGrupo' => 'required|string|max:25',
+            'idgrupos' => 'required|string|max:6|unique:grupos,idgrupos',
+            'descripciongrupo' => 'required|string|max:50',
+            'estado'=>'required|string|max:2'
         ]);
 
         Grupo::create($request->all());
@@ -75,8 +77,8 @@ class GrupoController extends Controller
         Log::info('Datos recibidos en la solicitud', $request->all());
 
         $validatedData = $request->validate([
-            'idgrupo' => 'required|int|unique:grupos,idgrupo',
-            'nombreGrupo' => 'required'
+            'descripciongrupo' => 'required|string|max:50',
+            'estado'=>'required|string|max:2'
         ]);
 
         Log::info('Datos validados correctamente', $validatedData);
