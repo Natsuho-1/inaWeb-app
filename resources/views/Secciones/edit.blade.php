@@ -1,6 +1,7 @@
 @extends('layouts.secciones')
 
 @section('title', 'Editar Sección')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -17,7 +18,7 @@
             <select class="form-control" id="idespecialidad" name="idespecialidad" required>
                 @foreach($especialidades as $especialidad)
                     <option value="{{ $especialidad->idespecialidad }}" {{ $especialidad->idespecialidad == $seccion->idespecialidad ? 'selected' : '' }}>
-                        {{ $especialidad->nvl_especialidad }}
+                        {{ $especialidad->descripcionspecialidad }}
                     </option>
                 @endforeach
             </select>

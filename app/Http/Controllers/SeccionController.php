@@ -43,4 +43,26 @@ class SeccionController extends Controller
 
         return redirect()->route('secciones.index')->with('success', 'Sección creada con éxito.');
     }
+    public function edit($idseccion)
+    {
+        $seccion = Seccion::findOrFail($idseccion);
+        $especialidades = Especialidad::all();
+        $aulas = Aula::all();
+        return view('secciones.edit', compact('seccion', 'especialidades', 'aulas'));
+    }
+
+    public function update(Request $request, $idseccion)
+    {
+        $request->validate([
+            'idseccion' => 'required|string|max:6|unique:secciones,idseccion,' . $idseccion . ',idseccion',
+            'idespecialidad' => 'required|string|max:6',
+            'idaula' => 'required|string|max:6',
+            'seccion' => 'required|string|max:50',
+        ]);
+
+        $seccion = Seccion::findOrFail($idseccion);
+        $seccion->update($request->all());
+
+        return redirect()->route('secciones.index')->with('success', 'Sección actualizada con éxito.');
+    }
 }
