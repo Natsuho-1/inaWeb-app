@@ -16,8 +16,46 @@
             <input type="text" class="form-control" id="descripciongrupo" maxlength="50" name="descripciongrupo" value="{{ $grupo->descripciongrupo }}" required>
         </div>
         <div class="mb-3">
-            <label for="estado" class="form-label">estado</label>
-            <input type="text" class="form-control" id="estado" maxlength="50" name="estado" value="{{ $grupo->estado }}" required>
+            <label for="estado" class="form-label">Estado</label>    
+            <select class="form-select" id="estado" name="estado" required>
+                @foreach($estados as $estado)
+                    <option value="
+                    @if ($grupo->estado==0)
+                        {{$grupo->estado}}
+                        @section(
+                            $grupo->estado=$grupo->estado+1,
+                            $val=0
+                        )
+                        
+                        @endsection
+                        @else
+                        {{$grupo->estado}}
+                        @section(
+                            $grupo->estado=$grupo->estado-1,
+                            $val=1
+                        )
+                        
+                        @endsection
+                    @endif
+                    ">
+                    @if ($val==0)
+                        Inactivo
+                        @section(
+                            $val=1
+                        )
+                        
+                        @endsection
+                        @else
+                        Activo
+                        @section(
+                            $val=0
+                        )
+                        
+                        @endsection
+                    @endif
+                </option>
+                @endforeach
+            </select>
         </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>

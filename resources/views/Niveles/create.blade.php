@@ -8,11 +8,11 @@
         @csrf
         <div class="mb-3">
             <label for="idnivel" class="form-label">ID del Nivel</label>
-            <input type="text" class="form-control" id="idnivel" name="idnivel" required>
+            <input type="text" class="form-control" id="idnivel" maxlength="6" name="idnivel" required>
         </div>
         <div class="mb-3">
-            <label for="nombreNivel" class="form-label">Nombre del Nivel</label>
-            <input type="text" class="form-control" id="nombreNivel" name="nombreNivel" required>
+            <label for="descripcionivel" class="form-label">Nombre del Nivel</label>
+            <input type="text" class="form-control" id="descripcionivel" maxlength="50" name="descripcionivel" required>
         </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>

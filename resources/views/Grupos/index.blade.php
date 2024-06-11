@@ -24,7 +24,11 @@
                 <tr>
                     <td>{{ $grupo->idgrupos }}</td>
                     <td>{{ $grupo->descripciongrupo }}</td>
-                    <td>{{ $grupo->estado }}</td>
+                    @if ($grupo->estado==1)
+                     <td>Activo</td>
+                     @elseif($grupo->estado==0)
+                     <td>Inactivo</td>
+                    @endif
                     <td>
                         <a href="{{ route('grupos.edit', $grupo->idgrupos) }}" class="btn btn-sm btn-warning">Editar</a>
                     </td>
