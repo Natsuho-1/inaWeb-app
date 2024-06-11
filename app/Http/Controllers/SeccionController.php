@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Seccion;
 use App\Models\Especialidad;
 use App\Models\Aula;
+use App\Models\Grado;
 use Illuminate\Http\Request;
 
 class SeccionController extends Controller
@@ -13,7 +14,7 @@ class SeccionController extends Controller
     public function index()
     {
         // Obtener todas las secciones con sus relaciones
-        $secciones = Seccion::with(['especialidad', 'aula'])->get();
+        $secciones = Seccion::with(['especialidad', 'aula','grado'])->get();
 
         // Pasar los datos a la vista
         return view('secciones.index', compact('secciones'));
@@ -24,9 +25,9 @@ class SeccionController extends Controller
         // Obtener todas las especialidades y aulas para el formulario
         $especialidades = Especialidad::all();
         $aulas = Aula::all();
-
+        $grados = Grado::all();
         // Pasar los datos a la vista
-        return view('secciones.create', compact('especialidades', 'aulas'));
+        return view('secciones.create', compact('especialidades', 'aulas','grados'));
     }
 
     public function store(Request $request)

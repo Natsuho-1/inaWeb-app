@@ -23,14 +23,6 @@
                 @endforeach
             </select>
         </div>
-        <div class="mb-3">
-            <label for="nombrenivel" class="form-label">Nivel</label>
-            <select class="form-select" id="nombrenivel" name="nombrenivel" required>
-                @foreach($niveles as $nivel)
-                    <option value="{{ $nivel }}">{{ $nivel }}</option>
-                @endforeach
-            </select>
-        </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
 </div>

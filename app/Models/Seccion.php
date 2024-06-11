@@ -15,6 +15,7 @@ class Seccion extends Model
 
     protected $fillable = [
         'idseccion',
+        'idgrado',
         'idespecialidad',
         'idaula',
         'seccion',
@@ -28,5 +29,9 @@ class Seccion extends Model
     public function aula()
     {
         return $this->belongsTo(Aula::class, 'idaula', 'idaula');
+    }
+    public function grado()
+    {
+        return $this->belongsTo(Grado::class, 'idgrado','idgrado');
     }
 }

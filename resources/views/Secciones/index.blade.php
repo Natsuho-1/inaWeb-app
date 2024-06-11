@@ -17,7 +17,7 @@
             <tr>
                 <th>#</th>
                 <th>ID Sección</th>
-                <th>Nombre de la Sección</th>
+                <th>Grado</th>
                 <th>Especialidad</th>
                 <th>Aula</th>
                 <th>Acciones</th>
@@ -28,7 +28,7 @@
                 <tr>
                     <td>{{ $index + 1 }}</td>
                     <td>{{ $seccion->idseccion }}</td>
-                    <td>{{ $seccion->seccion }}</td>
+                    <td>{{ $seccion->grado->descripciongrado ?? 'N/A' }}</td>
                     <td>{{ $seccion->especialidad->descripcionspecialidad ?? 'N/A' }}</td>
                     <td>{{ $seccion->aula->nvl_especialidad ?? 'N/A' }}</td>
                     <td>
