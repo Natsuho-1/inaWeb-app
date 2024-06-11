@@ -39,26 +39,43 @@ class SeccionController extends Controller
             'idaula' => 'required|string|max:6',
             'seccion' => 'required|string|max:50',
         ]);
-
-        Seccion::create($request->all());
-
+    
+        // Generar un ID de sección aleatorio de 6 dígitos
+        $idseccion = $this->generateRandomId();
+    
+        // Crear la nueva sección con el ID de sección generado y los demás campos del request
+        Seccion::create([
+            'idseccion' => $idseccion,
+            'idgrado' => $request->input('idgrado'),
+            'idespecialidad' => $request->input('idespecialidad'),
+            'idaula' => $request->input('idaula'),
+            // Otros campos del request pueden ser añadidos aquí si es necesario
+        ]);
+    
         return redirect()->route('secciones.index')->with('success', 'Sección creada con éxito.');
     }
+    
+    // Método para generar un ID aleatorio de 6 dígitos
+    private function generateRandomId()
+    {
+        return mt_rand(100000, 999999);
+    }
+
     public function edit($idseccion)
     {
         $seccion = Seccion::findOrFail($idseccion);
         $especialidades = Especialidad::all();
-        $aulas = Aula::all();
-        return view('secciones.edit', compact('seccion', 'especialidades', 'aulas'));
+        $aulas = Aula::all(); 
+        $grados = Grado::all();
+        return view('secciones.edit', compact('seccion','especialidades', 'aulas','grados'));
     }
 
     public function update(Request $request, $idseccion)
     {
         $request->validate([
-            'idseccion' => 'required|string|max:6|unique:secciones,idseccion,' . $idseccion . ',idseccion',
+            'idgrado' => 'required|string|max:6',
             'idespecialidad' => 'required|string|max:6',
             'idaula' => 'required|string|max:6',
-            'seccion' => 'required|string|max:50',
         ]);
 
         $seccion = Seccion::findOrFail($idseccion);

@@ -8,8 +8,12 @@
     <form action="{{ route('secciones.store') }}" method="POST">
         @csrf
         <div class="mb-3">
-            <label for="idseccion" class="form-label">ID Sección</label>
-            <input type="text" class="form-control" id="idseccion" name="idseccion" required maxlength="6">
+            <label for="idgrado" class="form-label">Grado</label>
+            <select class="form-select" id="idgrado" name="idgrado" required>
+                @foreach($grados as $grado)
+                    <option value="{{ $grado->idgrado }}">{{ $grado->descripciongrado}}</option>
+                @endforeach
+            </select>
         </div>
         <div class="mb-3">
             <label for="idespecialidad" class="form-label">Especialidad</label>
@@ -26,10 +30,6 @@
                     <option value="{{ $aula->idaula }}">{{ $aula->nvl_especialidad }} - {{ $aula->modalidad }}</option>
                 @endforeach
             </select>
-        </div>
-        <div class="mb-3">
-            <label for="seccion" class="form-label">Nombre de la Sección</label>
-            <input type="text" class="form-control" id="seccion" name="seccion" required maxlength="50">
         </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
