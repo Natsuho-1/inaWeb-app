@@ -32,8 +32,3 @@ class Especialidad extends Model
     }
     public $timestamps = false;  // Deshabilitar los timestamps
 }
-
-
-
-
-

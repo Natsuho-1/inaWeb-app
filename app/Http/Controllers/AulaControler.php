@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Estudiantes;
 use Illuminate\Http\Request;
 
-class EstudiantesController extends Controller
+class AulaControler extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('Estudiantes.index');
         //
     }
 
@@ -21,7 +19,6 @@ class EstudiantesController extends Controller
      */
     public function create()
     {
-        return view('Estudiantes.create');
         //
     }
 
@@ -36,7 +33,7 @@ class EstudiantesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Estudiantes $estudiantes)
+    public function show(string $id)
     {
         //
     }
@@ -44,7 +41,7 @@ class EstudiantesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Estudiantes $estudiantes)
+    public function edit(string $id)
     {
         //
     }
@@ -52,7 +49,7 @@ class EstudiantesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Estudiantes $estudiantes)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -60,7 +57,7 @@ class EstudiantesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Estudiantes $estudiantes)
+    public function destroy(string $id)
     {
         //
     }

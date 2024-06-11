@@ -83,8 +83,3 @@ return view('especialidades.create', compact('modalidades', 'niveles'));
         return view('especialidades.modify', compact('especialidades'));
     }
 }
-
-
-
-
-
