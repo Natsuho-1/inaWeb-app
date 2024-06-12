@@ -85,7 +85,7 @@
             <img src="img/iconos_0000_users-group.jpg" alt="Imagen de la Materia">
             <div class="card-content">
                 <div class="card-title">Grado</div>
-                <button onclick="">ver</button>
+                <button onclick="window.location='{{ route('niveles.index') }}'">ver</button>
             </div>
         </div>
     </div>
