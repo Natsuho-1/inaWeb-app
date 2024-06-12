@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Administrativo</title>
+    <title>Nuevo Encabezado</title>
     <link rel="stylesheet" href="{{ asset('css/estilos_menu_materias.css') }}">
 </head>
 <body>
-    <header class="encabezado">
-        <h1 class="titulo">Menu Administrativo</h1>
+    <header class="header">
+        <h1 class="title">Menú Administrativo</h1>
     </header>
     <div class="contenedor-card">
         <div class="card">
@@ -85,7 +85,7 @@
             <img src="img/iconos_0000_users-group.jpg" alt="Imagen de la Materia">
             <div class="card-content">
                 <div class="card-title">Grado</div>
-                <button onclick="window.location='{{ route('grados.index') }}'">ver</button>
+                <button onclick="window.location='{{ route('niveles.index') }}'">ver</button>
             </div>
         </div>
     </div>
