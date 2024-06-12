@@ -37,6 +37,17 @@ Route::post('/niveles', [NivelController::class, 'store'])->name('niveles.store'
 //modificar
 Route::get('/niveles/{id}/edit', [NivelController::class, 'edit'])->name('niveles.edit');
 Route::put('/niveles/{id}', [NivelController::class, 'update'])->name('niveles.update');
+//NIVELES ROUTE
+
+use App\Http\Controllers\GradoController;
+
+//MOSTRAR tabla y CREAR nuevo grupo
+Route::get('/grados', [GradoController::class, 'index'])->name('grados.index');
+Route::get('/grados/create', [GradoController::class, 'create'])->name('grados.create');
+Route::post('/grados', [GradoController::class, 'store'])->name('grados.store');
+//modificar
+Route::get('/grados/{id}/edit', [GradoController::class, 'edit'])->name('grados.edit');
+Route::put('/grados/{id}', [GradoController::class, 'update'])->name('grados.update');
 
 //SECCIONES ROUTE
 use App\Http\Controllers\SeccionController;
