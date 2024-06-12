@@ -26,7 +26,7 @@
                     <td>{{ $grado->descripciongrado }}</td>
                     <td>{{ $grado->idnivel }}</td>
                     <td>
-                        <a href="{{ route('grados.edit', $grado->idgrado) }}" class="btn btn-sm btn-warning">Editar</a>
+                        <a href="{{ route('grados.edit', $grado->idgrado) }}" class="btn btn-primary">Editar</a>
                     </td>
                 </tr>
             @endforeach
