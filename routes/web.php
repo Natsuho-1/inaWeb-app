@@ -43,3 +43,11 @@ use App\Http\Controllers\SeccionController;
 
 Route::resource('secciones', SeccionController::class);
 Route::put('secciones/{seccione}', [SeccionController::class, 'update'])->name('secciones.update');
+
+//MENUS
+// routes/web.php
+
+use App\Http\Controllers\MenuController;
+
+Route::get('/menus', [MenuController::class, 'menuadmin']);
+
