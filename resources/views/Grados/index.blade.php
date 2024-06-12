@@ -4,7 +4,6 @@
 @section('content')
 <div class="container">
 <h1>Lista de Grados</h1>
-    <a href="{{ route('grados.create') }}" class="btn btn-primary">Agregar Grado</a>
     @if(session('success'))
         <div class="alert alert-success mt-3">
             {{ session('success') }}
@@ -13,6 +12,7 @@
     <table class="table mt-3">
         <thead>
             <tr>
+                <th>#</th>
                 <th>ID Grado</th>
                 <th>Nombre del Grado</th>
                 <th>ID Nivel</th>
@@ -20,8 +20,9 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($grados as $grado)
+            @foreach($grados as $index => $grado)
                 <tr>
+                    <td>{{ $index + 1 }}</td>
                     <td>{{ $grado->idgrado }}</td>
                     <td>{{ $grado->descripciongrado }}</td>
                     <td>{{ $grado->idnivel }}</td>

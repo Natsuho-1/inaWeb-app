@@ -23,7 +23,7 @@
         }
 
         .sidebar {
-            height: 100vh;
+            height: auto;
             position: relative;
             background-color: #ffffff !important;
         }
