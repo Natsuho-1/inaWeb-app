@@ -19,6 +19,7 @@
                 <th>Grado</th>
                 <th>Especialidad</th>
                 <th>Grupo</th>
+                <th>Nivel</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -30,6 +31,7 @@
                     <td>{{ $seccion->grado->descripciongrado ?? 'N/A' }}</td>
                     <td>{{ $seccion->especialidad->descripcionspecialidad ?? 'N/A' }}</td>
                     <td>{{ $seccion->grupo->descripciongrupo ?? 'N/A' }}</td>
+                    <td>{{ $seccion->grado->nivel->descripcionivel ?? 'N/A' }}</td>
                     <td>
                         <a href="{{ route('secciones.edit', $seccion->idseccion) }}" class="btn btn-sm btn-warning">Editar</a>
                     </td>

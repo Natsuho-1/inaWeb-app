@@ -20,6 +20,7 @@ class Seccion extends Model
         'idespecialidad',
         'idaula',
         'idgrupos',
+        'idnivel',
         'estado'
     ];
 
@@ -38,5 +39,9 @@ class Seccion extends Model
     public function grupo()
     {
         return $this->belongsTo(Grupo::class, 'idgrupos','idgrupos');
+    }
+    public function nivel()
+    {
+        return $this->belongsTo(Nivel::class, 'idnivel','idnivel');
     }
 }
