@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Grado;
+use App\Models\Nivel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -11,7 +12,7 @@ class GradoController extends Controller
     /**
      * Display a listing of the resource. mi rama
      */
-    protected $estados = ['Activo', 'Inactivo'];
+    protected $niveles = ['Activo', 'Inactivo'];
     public function index()
     {
         //
@@ -27,10 +28,10 @@ class GradoController extends Controller
     public function create()
     {
         //
-        $estados = $this->estados;
+        $niveles = Nivel::all();
 
         // Pasar los datos a la vista
-        return view('grados.create', compact('estados'));
+        return view('grados.create', compact('niveles'));
     }
 
     /**
@@ -40,9 +41,9 @@ class GradoController extends Controller
     {
         //
         $request->validate([
-            'idgrupos' => 'required|string|max:6|unique:grupos,idgrupos',
-            'descripciongrupo' => 'required|string|max:50',
-            'estado'=>'required|string|max:2'
+            'idgrado' => 'required|string|max:6|unique:grado,idgrado',
+            'descripciongrado' => 'required|string|max:50',
+            'idnivel'=>'required|string|max:6'
         ]);
 
         Grado::create($request->all());
@@ -63,10 +64,11 @@ class GradoController extends Controller
      */
     public function edit($id)
     {
-        $estados = $this->estados;
+        $niveles = Nivel::all();
+
         Log::info('Entrando al método edit', ['id' => $id]);
         $grados = Grado::findOrFail($id);
-        return view('grados.edit', compact('grados','estados'));
+        return view('grados.edit', compact('grados','niveles'));
     }
 
     /**
@@ -78,8 +80,8 @@ class GradoController extends Controller
         Log::info('Datos recibidos en la solicitud', $request->all());
 
         $validatedData = $request->validate([
-            'descripciongrupo' => 'required|string|max:50',
-            'estado'=>'required|string|max:2'
+            'descripciongrado' => 'required|string|max:50',
+            'idnivel'=>'required|string|max:6'
         ]);
 
         Log::info('Datos validados correctamente', $validatedData);
