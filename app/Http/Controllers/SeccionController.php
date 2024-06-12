@@ -42,10 +42,10 @@ class SeccionController extends Controller
     
         // Generar un ID de sección aleatorio de 6 dígitos
         $lastSeccion = Seccion::orderBy('idseccion', 'desc')->first();
-    $newIdSeccion = $lastSeccion ? $lastSeccion->idseccion + 1 : 100000; // Iniciar desde 100000 si no hay registros
-    while (Seccion::where('idseccion', $newIdSeccion)->exists()) {
-        $newIdSeccion++;
-    }
+        $newIdSeccion = $lastSeccion ? intval($lastSeccion->idseccion) + 1 : 100000; // Iniciar desde 100000 si no hay registros
+        while (Seccion::where('idseccion', $newIdSeccion)->exists()) {
+            $newIdSeccion++;
+        }
     
         // Crear la nueva sección con el ID de sección generado y los demás campos del request
         Seccion::create([
