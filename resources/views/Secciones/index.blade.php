@@ -33,7 +33,7 @@
                     <td>{{ $seccion->grupo->descripciongrupo ?? 'N/A' }}</td>
                     <td>{{ $seccion->grado->nivel->descripcionivel ?? 'N/A' }}</td>
                     <td>
-                        <a href="{{ route('secciones.edit', $seccion->idseccion) }}" class="btn btn-sm btn-warning">Editar</a>
+                        <a href="{{ route('secciones.edit', $seccion->idseccion) }}" class="btn btn-primary">Editar</a>
                     </td>
                 </tr>
             @endforeach

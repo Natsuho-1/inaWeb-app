@@ -3,7 +3,6 @@
 @section('content')
 <div class="container">
 <h1>Lista de Niveles</h1>
-    <a href="{{ route('niveles.create') }}" class="btn btn-primary">Agregar Nivel</a>
     @if(session('success'))
         <div class="alert alert-success mt-3">
             {{ session('success') }}
@@ -25,7 +24,7 @@
                     <td>{{ $nivel->idnivel }}</td>
                     <td>{{ $nivel->descripcionivel }}</td>
                     <td>
-                        <a href="{{ route('niveles.edit', $nivel->idnivel) }}" class="btn btn-sm btn-warning">Editar</a>
+                        <a href="{{ route('niveles.edit', $nivel->idnivel) }}" class="btn btn-primary">Editar</a>
                     </td>
                 </tr>
             @endforeach

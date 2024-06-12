@@ -1,35 +1,32 @@
-
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     padding: 0;
-    border: 0;
-    
+    margin: 0;
 }
 
-.encabezado{
+.encabezado {
     width: 100%;
-    height: auto;
     background: #9699d6;
+    display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1px;
+    padding: 10px 0;
 }
 
-.encabezado .titulo{
+.encabezado .titulo {
     color: #fff;
-    font-size: 1.3em;
+    font-size: 2em;
     text-align: center;
 }
-.contenedor-card{
-    display: none;
+
+.contenedor-card {
     width: 85%;
-    height: auto;
     margin: auto;
     display: flex;
-    align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
-    padding: 5px;
+    padding: 20px 0;
 }
 
 .card {
@@ -54,6 +51,7 @@ body {
 
 .card-content {
     padding: 15px;
+    text-align: center;
 }
 
 .card-title {
