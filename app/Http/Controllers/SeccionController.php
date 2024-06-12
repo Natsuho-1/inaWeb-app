@@ -8,6 +8,7 @@ use App\Models\Especialidad;
 use App\Models\Aula;
 use App\Models\Grado;
 use App\Models\Grupo;
+use App\Models\Nivel;
 use Illuminate\Http\Request;
 
 class SeccionController extends Controller
@@ -15,7 +16,7 @@ class SeccionController extends Controller
     public function index()
     {
         // Obtener todas las secciones con sus relaciones
-        $secciones = Seccion::with(['especialidad','grado','grupo'])->get();
+        $secciones = Seccion::with(['especialidad','grado','grupo','grado.nivel'])->get();
 
         // Pasar los datos a la vista
         return view('secciones.index', compact('secciones'));
@@ -28,8 +29,9 @@ class SeccionController extends Controller
         $especialidades = Especialidad::all();
         $grados = Grado::all();
         $grupos = Grupo::all();
+        $niveles = Nivel::all();
         // Pasar los datos a la vista
-        return view('secciones.create', compact('secciones','especialidades','grados','grupos'));
+        return view('secciones.create', compact('secciones','especialidades','grados','grupos','niveles'));
     }
     public function store(Request $request)
     {
@@ -53,7 +55,7 @@ class SeccionController extends Controller
             'idgrado' => $request->input('idgrado'),
             'idespecialidad' => $request->input('idespecialidad'),
             'idaula' => 'AU0001',
-            'idgrupos' => $request->input('idgrupo')
+            'idgrupos' => $request->input('idgrupo'),
             // Otros campos del request pueden ser añadidos aquí si es necesario
         ]);
     
