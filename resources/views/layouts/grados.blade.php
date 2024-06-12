@@ -82,30 +82,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
-        <div class="container-fluid">
-            <button class="btn menu-toggle-custom" id="menu-toggle">☰</button>
-            <a class="navbar-brand ms-3" href="#">Gestión de Grados</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Usuario
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-key-fill"></i>Cambiar Contraseña</a></li>
-                            <li><a  class="dropdown-item" href="#"><i class="bi bi-box-arrow-left"></i>Cerrar Sesión</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+@include('layouts.navbar')
     <div class="container-fluid">
         <div id="sidebarMenu" class="col-md-3 col-lg-2 sidebar">
             <ul class="nav flex-column">
@@ -125,12 +102,6 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-    <script>
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            document.getElementById('sidebarMenu').classList.toggle('hidden');
-            document.querySelector('.main-content').classList.toggle('hidden');
-        });
-    </script>
 </body>
 
 </html>
