@@ -15,6 +15,7 @@ use App\Http\Controllers\EstudiantesController;
 
 Route::get('/Estudiantes', [EstudiantesController::class, 'index'])->name('Estudiantes.index');
 Route::get('/Estudiantes/create', [EstudiantesController::class, 'create'])->name('Estudiantes.create');
+Route::post('/Estudiantes', [EstudiantesController::class, 'store'])->name('Estudiantes.store');
 
 //GRUPOS ROUTE
 use App\Http\Controllers\GrupoController;

@@ -20,6 +20,5 @@ class Grado extends Model
     {
         return $this->belongsTo(Nivel::class, 'idnivel', 'idnivel');
     }
-
     public $timestamps = false;  // Deshabilitar los timestamps
 }
