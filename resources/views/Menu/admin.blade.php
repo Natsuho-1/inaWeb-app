@@ -22,7 +22,7 @@
             <img src="img/iconos_0001_users.jpg" alt="Imagen de la Materia">
             <div class="card-content">
                 <div class="card-title">Docentes</div>
-                <button onclick="">ver</button>
+                <button onclick="window.location='{{ route('docentes.index') }}'">ver</button>
             </div>
         </div>
         <div class="card">
@@ -57,8 +57,7 @@
             <img src="img/iconos_0009_book.jpg" alt="Imagen de la Materia">
             <div class="card-content">
                 <div class="card-title">Materias</div>
-                <button onclick="">ver</button>
-            </div>
+                <button onclick="window.location='{{ route('asignaturas.index') }}'">ver</button>            </div>
         </div>
         <div class="card">
             <img src="img/iconos_0004_golf.jpg" alt="Imagen de la Materia">
@@ -85,7 +84,7 @@
             <img src="img/iconos_0000_users-group.jpg" alt="Imagen de la Materia">
             <div class="card-content">
                 <div class="card-title">Grado</div>
-                <button onclick="window.location='{{ route('niveles.index') }}'">ver</button>
+                <button onclick="window.location='{{ route('grados.index') }}'">ver</button>
             </div>
         </div>
     </div>
