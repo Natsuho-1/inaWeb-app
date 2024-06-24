@@ -155,14 +155,23 @@ class EstudiantesController extends Controller
     public function show(Estudiantes $estudiantes)
     {
         //
+        
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Estudiantes $estudiantes)
+    public function edit($id)
     {
         //
+        $modalidades = $this->modalidades;
+        $parentescos=$this->parentescos;
+        $opciones=$this->opciones;
+        $generos=$this->generos;
+        $grados = Grado::all();
+        $especialidades = Especialidad::all();
+        $estudiantes = Estudiantes::with('persona', 'familiares')->findOrFail($id);
+        return view('Estudiantes.edit', compact('estudiantes','grados','especialidades','modalidades','parentescos','opciones','generos'));
     }
 
     /**
@@ -171,6 +180,7 @@ class EstudiantesController extends Controller
     public function update(Request $request, Estudiantes $estudiantes)
     {
         //
+        return redirect()->route('Estudiantes.index')->with('success', 'Estudiante actualizado correctamente');
     }
 
     /**

@@ -29,6 +29,10 @@ class Estudiantes extends Model
     {
         return $this->belongsTo(Persona::class, 'idpersonal','idpersonal');
     }
+    public function familiares()
+    {
+        return $this->hasMany(Familiares::class, 'idestudiante','idestudiante');
+    }
     public function seccion()
     {
         return $this->belongsTo(Seccion::class, 'idseccion', 'idseccion');
