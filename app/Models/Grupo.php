@@ -18,13 +18,4 @@ class Grupo extends Model
         'descripciongrupo',
         'estado'
     ];
-
-    public function especialidad()
-    {
-        return $this->belongsTo(Especialidad::class, 'idespecialidad', 'idespecialidad');
-    }
-    public function seccion()
-    {
-        return $this->belongsTo(Seccion::class, 'idseccion', 'idseccion');
-    }
 }
