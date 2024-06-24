@@ -11,6 +11,13 @@
         <h1 class="title">Menú Administrativo</h1>
     </header>
     <div class="contenedor-card">
+    <div class="card">
+            <img src="img/iconos_0002_user.jpg" alt="Imagen de la Materia">
+            <div class="card-content">
+                <div class="card-title">Inscripciones</div>
+                <button onclick="window.location='{{ route('Estudiantes.index') }}'">ver</button>
+            </div>
+        </div>
         <div class="card">
             <img src="img/iconos_0002_user.jpg" alt="Imagen de la Materia">
             <div class="card-content">

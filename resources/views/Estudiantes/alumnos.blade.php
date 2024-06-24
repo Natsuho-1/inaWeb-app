@@ -1,5 +1,5 @@
-@extends('layouts.inscripciones')
-@section('title', 'Aspirantes')
+@extends('layouts.Estudiantes')
+@section('title', 'Estudiantes')
 
 @section('content')
 <div class="container">
