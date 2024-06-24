@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>@yield('title', 'Gestión de Estudiantes')</title>
+    <title>@yield('title', 'Gestión de Aspirantes')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <style>
@@ -87,11 +87,11 @@
             <ul class="nav flex-column">
                 <li class="nav-item">
                     <a href="{{ route('Estudiantes.index') }}" class="nav-link"><i class="bi bi-book-half"></i>
-                        Estudiantes</a>
+                        ASPIRANTES</a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('Estudiantes.create') }}" class="nav-link"><i class="bi bi-patch-plus-fill"></i>
-                        Buscar</a>
+                        NUEVO ASPIRANTE</a>
                 </li>
             </ul>
         </div>
