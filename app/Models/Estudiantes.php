@@ -17,7 +17,11 @@ class Estudiantes extends Model
         'idestudiante',
         'idseccion',
         'idpersonal',
+        'idgrado',
+        'idespecialidad',
+        'carnetmenoridad',
         'modalidad',
+        'estadoestudiante',
         'inscrito'
     ];
 
@@ -28,5 +32,13 @@ class Estudiantes extends Model
     public function seccion()
     {
         return $this->belongsTo(Seccion::class, 'idseccion', 'idseccion');
+    }
+    public function especialidad()
+    {
+        return $this->belongsTo(Especialidad::class, 'idespecialidad', 'idespecialidad');
+    }
+    public function grado()
+    {
+        return $this->belongsTo(Grado::class, 'idgrado', 'idgrado');
     }
 }
