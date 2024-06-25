@@ -16,6 +16,8 @@ use App\Http\Controllers\EstudiantesController;
 Route::get('/Estudiantes', [EstudiantesController::class, 'index'])->name('Estudiantes.index');
 Route::get('/Estudiantes/create', [EstudiantesController::class, 'create'])->name('Estudiantes.create');
 Route::post('/Estudiantes', [EstudiantesController::class, 'store'])->name('Estudiantes.store');
+Route::get('/Estudiantes/{id}/edit', [EstudiantesController::class, 'edit'])->name('Estudiantes.edit');
+Route::put('/Estudiantes/{id}', [EstudiantesController::class, 'update'])->name('Estudiantes.update');
 Route::post('/Estudiantes/alumnos', [EstudiantesController::class, 'index'])->name('Estudiantes.alumno');
 Route::get('/Estudiantes/{id}/edit', [EstudiantesController::class, 'edit'])->name('Estudiantes.edit');
 Route::put('/Estudiantes/{id}', [EstudiantesController::class, 'update'])->name('Estudiantes.update');
