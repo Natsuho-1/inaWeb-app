@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Estudiantes;
 use App\Models\Especialidad;
 use App\Models\Grado;
+use App\Models\Seccion;
 use App\Models\Persona;
 use App\Models\Usuario;
 use App\Models\Familiares;
@@ -28,14 +29,19 @@ class EstudiantesController extends Controller
         if ($request->filled('grade')) {
             $query->where('idgrado', $request->grade);
         }
+        if ($request->filled('sec')) {
+            $query->where('idseccion', $request->sec);
+        }
 
         if ($request->filled('specialty')) {
             $query->where('idespecialidad', $request->specialty);
         }
 
+
         $estudiantes = $query->get();
         $grados = Grado::all();
         $especialidades = Especialidad::all();
+        $secciones = Seccion::all();
 
         return view('estudiantes.index', [
             'estudiantes' => $estudiantes,
@@ -171,23 +177,14 @@ class EstudiantesController extends Controller
     public function show(Estudiantes $estudiantes)
     {
         //
-        
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(Estudiantes $estudiantes)
     {
         //
-        $modalidades = $this->modalidades;
-        $parentescos=$this->parentescos;
-        $opciones=$this->opciones;
-        $generos=$this->generos;
-        $grados = Grado::all();
-        $especialidades = Especialidad::all();
-        $estudiantes = Estudiantes::with('persona', 'familiares')->findOrFail($id);
-        return view('Estudiantes.edit', compact('estudiantes','grados','especialidades','modalidades','parentescos','opciones','generos'));
     }
 
     /**
@@ -196,7 +193,6 @@ class EstudiantesController extends Controller
     public function update(Request $request, Estudiantes $estudiantes)
     {
         //
-        return redirect()->route('Estudiantes.index')->with('success', 'Estudiante actualizado correctamente');
     }
 
     /**

@@ -9,20 +9,11 @@
     <form method="GET" action="{{ route('students.index') }}" class="mb-3">
         <div class="row">
             <div class="col-md-3">
-                <label for="grade">Grado</label>
-                <select name="grade" id="grade" class="form-control">
-                    <option value="">Todos</option>
-                    @foreach($grados as $grado)
-                        <option value="{{ $grado->idgrado }}" {{ $request->grade == $grado->idgrado ? 'selected' : '' }}>{{ $grado->nombre }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="col-md-3">
                 <label for="specialty">Especialidad</label>
                 <select name="specialty" id="specialty" class="form-control">
                     <option value="">Todas</option>
-                    @foreach($especialidades as $especialidad)
-                        <option value="{{ $especialidad->idespecialidad }}" {{ $request->specialty == $especialidad->idespecialidad ? 'selected' : '' }}>{{ $especialidad->nombre }}</option>
+                    @foreach($secciones as $seccion)
+                        <option value="{{ $secciones->idseccion }}" {{ $request-> == $especialidad->idespecialidad ? 'selected' : '' }}>{{ $especialidad->nombre }}</option>
                     @endforeach
                 </select>
             </div>
