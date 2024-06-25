@@ -16,7 +16,9 @@ use App\Http\Controllers\EstudiantesController;
 Route::get('/Estudiantes', [EstudiantesController::class, 'index'])->name('Estudiantes.index');
 Route::get('/Estudiantes/create', [EstudiantesController::class, 'create'])->name('Estudiantes.create');
 Route::post('/Estudiantes', [EstudiantesController::class, 'store'])->name('Estudiantes.store');
-
+Route::post('/Estudiantes/alumnos', [EstudiantesController::class, 'index'])->name('Estudiantes.alumno');
+Route::get('/Estudiantes/{id}/edit', [EstudiantesController::class, 'edit'])->name('Estudiantes.edit');
+Route::put('/Estudiantes/{id}', [EstudiantesController::class, 'update'])->name('Estudiantes.update');
 //GRUPOS ROUTE
 use App\Http\Controllers\GrupoController;
 
@@ -56,6 +58,8 @@ use App\Http\Controllers\SeccionController;
 Route::resource('secciones', SeccionController::class);
 Route::put('secciones/{seccione}', [SeccionController::class, 'update'])->name('secciones.update');
 
+
+//Route::get('/students', [EstudiantesController::class, 'index'])->name('students.index');
 //MENUS
 // routes/web.php
 

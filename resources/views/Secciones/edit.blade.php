@@ -39,7 +39,10 @@
                 @endforeach
             </select>
         </div>
-       
+        <div class="mb-3">
+            <label for="cantidad" class="form-label">Capacidad de Estudiantes</label>
+            <input type="text" class="form-control" id="cantidad" name="cantidad" value="{{ $seccion->cantidad }}" required>
+        </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
 </div>

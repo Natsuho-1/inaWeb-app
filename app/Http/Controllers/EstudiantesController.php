@@ -21,12 +21,28 @@ class EstudiantesController extends Controller
     protected$parentescos = ['Padre'=>'P','Madre'=>'M','Hermano'=>'Ho','Hermana'=>'Ha','Tio'=>'To','Tia'=>'Ta','Abuelo'=>'Ao','Abuela'=>'Aa','Otro'=>'O'];
     protected$opciones = ['SI'=>1,'NO'=>0];
     protected$generos = ['Masculino','Femenino'];
-    public function index()
+    public function index(Request $request)
     {
-        Log::info('Entrando al método index');
-        $estudiantes = Estudiantes::with('persona')->get();
-        Log::info('Estudiantes obtenidos', ['estudiantes' => $estudiantes]);
-        return view('Estudiantes.index', compact('estudiantes'));
+        $query = Estudiantes::query();
+
+        if ($request->filled('grade')) {
+            $query->where('idgrado', $request->grade);
+        }
+
+        if ($request->filled('specialty')) {
+            $query->where('idespecialidad', $request->specialty);
+        }
+
+        $estudiantes = $query->get();
+        $grados = Grado::all();
+        $especialidades = Especialidad::all();
+
+        return view('estudiantes.index', [
+            'estudiantes' => $estudiantes,
+            'grados' => $grados,
+            'especialidades' => $especialidades,
+            'request' => $request
+        ]);
     }
 
     /**
