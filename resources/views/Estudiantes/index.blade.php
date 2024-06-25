@@ -30,7 +30,7 @@
                     <td>{{ $estudiante->persona->apellidos }}</td>
                     <td>{{ $estudiante->idseccion }}</td>
                     <td>
-                      
+                    <a href="{{ route('Estudiantes.edit', $estudiante->idestudiante) }}" class="btn btn-primary">Editar</a>
                     </td>
                 </tr>
             @endforeach
