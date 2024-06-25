@@ -16,7 +16,9 @@ class Grado extends Model
     protected $fillable = [
         'idgrado', 'descripciongrado', 'idnivel'
     ];
-
-
+    public function nivel()
+    {
+        return $this->belongsTo(Nivel::class, 'idnivel', 'idnivel');
+    }
     public $timestamps = false;  // Deshabilitar los timestamps
 }
