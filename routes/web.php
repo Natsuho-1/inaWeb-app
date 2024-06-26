@@ -64,3 +64,9 @@ Route::put('secciones/{seccione}', [SeccionController::class, 'update'])->name('
 use App\Http\Controllers\MenuController;
 
 Route::get('/menus', [MenuController::class, 'menuadmin'])->name('menus.admin');
+
+//Pensums 
+use App\Http\Controllers\PensumController;
+Route::get('/pensum', [PensumController::class, 'index']);
+
+

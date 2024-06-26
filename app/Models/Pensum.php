@@ -47,7 +47,7 @@ class Pensum extends Model
 
 	public function especialidade()
 	{
-		return $this->belongsTo(Especialidade::class, 'idespecialidad');
+		return $this->belongsTo(Especialidad::class, 'idespecialidad');
 	}
 
 	public function asignaturas()
