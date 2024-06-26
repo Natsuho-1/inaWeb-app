@@ -92,27 +92,35 @@ public function alumno(Request $request)
 {
     $query = Estudiantes::where('inscrito', 1);
 
-    if ($request->has('grade') && $request->grade) {
+if ($request->filled('grade')) {
+    // Filtrar por grado a través de la relación con secciones
+    $query->whereHas('seccion', function ($query) use ($request) {
         $query->where('idgrado', $request->grade);
-    }
-
-    if ($request->has('specialty') && $request->specialty) {
-        $query->where('idespecialidad', $request->specialty);
-    }
-
-    if ($request->has('grup') && $request->grup) {
-        $query->where('idgrupos', $request->grup);
-    }
-
-    $estudiantes = $query->get();
-
-    $grados = Grado::all();
-    $especialidades = Especialidad::all();
-    $grupos = Grupo::all();
-    $secciones = Seccion::all();
-
-    return view('estudiantes.alumnos', compact('estudiantes','secciones', 'grados', 'especialidades', 'grupos', 'request'));
+    });
 }
+
+if ($request->filled('specialty')) {
+    // Filtrar por especialidad a través de la relación con secciones
+    $query->whereHas('seccion', function ($query) use ($request) {
+        $query->where('idespecialidad', $request->specialty);
+    });
+}
+
+if ($request->filled('grup')) {
+    // Filtrar por grupo a través de la relación con secciones
+    $query->whereHas('seccion', function ($query) use ($request) {
+        $query->where('idgrupos', $request->grup);
+    });
+}
+
+$estudiantes = $query->get();
+
+$grados = Grado::all();
+$especialidades = Especialidad::all();
+$grupos = Grupo::all();
+$secciones = Seccion::all();
+
+return view('estudiantes.alumnos', compact('estudiantes', 'secciones', 'grados', 'especialidades', 'grupos', 'request'));}
     /**
      * Show the form for creating a new resource.
      */
