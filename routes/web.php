@@ -15,6 +15,9 @@ use App\Http\Controllers\EstudiantesController;
 
 Route::get('/Estudiantes', [EstudiantesController::class, 'index'])->name('Estudiantes.index');
 Route::get('/Estudiantes/create', [EstudiantesController::class, 'create'])->name('Estudiantes.create');
+Route::post('/Estudiantes', [EstudiantesController::class, 'store'])->name('Estudiantes.store');
+Route::get('/Estudiantes/{id}/edit', [EstudiantesController::class, 'edit'])->name('Estudiantes.edit');
+Route::put('/Estudiantes/{id}', [EstudiantesController::class, 'update'])->name('Estudiantes.update');
 
 //GRUPOS ROUTE
 use App\Http\Controllers\GrupoController;
@@ -37,6 +40,17 @@ Route::post('/niveles', [NivelController::class, 'store'])->name('niveles.store'
 //modificar
 Route::get('/niveles/{id}/edit', [NivelController::class, 'edit'])->name('niveles.edit');
 Route::put('/niveles/{id}', [NivelController::class, 'update'])->name('niveles.update');
+//NIVELES ROUTE
+
+use App\Http\Controllers\GradoController;
+
+//MOSTRAR tabla y CREAR nuevo grupo
+Route::get('/grados', [GradoController::class, 'index'])->name('grados.index');
+Route::get('/grados/create', [GradoController::class, 'create'])->name('grados.create');
+Route::post('/grados', [GradoController::class, 'store'])->name('grados.store');
+//modificar
+Route::get('/grados/{id}/edit', [GradoController::class, 'edit'])->name('grados.edit');
+Route::put('/grados/{id}', [GradoController::class, 'update'])->name('grados.update');
 
 //SECCIONES ROUTE
 use App\Http\Controllers\SeccionController;
@@ -49,5 +63,4 @@ Route::put('secciones/{seccione}', [SeccionController::class, 'update'])->name('
 
 use App\Http\Controllers\MenuController;
 
-Route::get('/menus', [MenuController::class, 'menuadmin']);
-
+Route::get('/menus', [MenuController::class, 'menuadmin'])->name('menus.admin');

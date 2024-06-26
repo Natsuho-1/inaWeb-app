@@ -1,5 +1,5 @@
-@extends('layouts.inscripciones')
-@section('title', 'Aspirantes')
+@extends('layouts.Estudiantes')
+@section('title', 'Estudiantes')
 
 @section('content')
 <div class="container">
@@ -30,7 +30,7 @@
                     <td>{{ $estudiante->persona->apellidos }}</td>
                     <td>{{ $estudiante->idseccion }}</td>
                     <td>
-                    <a href="{{ route('Estudiantes.edit', $estudiante->idestudiante) }}" class="btn btn-primary">Editar</a>
+                      
                     </td>
                 </tr>
             @endforeach

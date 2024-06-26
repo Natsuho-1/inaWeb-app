@@ -1,8 +1,9 @@
-@extends('layouts.niveles')
-@section('title', 'niveles')
+@extends('layouts.grados')
+@section('title', 'grados')
+
 @section('content')
 <div class="container">
-<h1>Lista de Niveles</h1>
+<h1>Lista de Grados</h1>
     @if(session('success'))
         <div class="alert alert-success mt-3">
             {{ session('success') }}
@@ -12,19 +13,21 @@
         <thead>
             <tr>
                 <th>#</th>
+                <th>ID Grado</th>
+                <th>Nombre del Grado</th>
                 <th>ID Nivel</th>
-                <th>Nombre del Nivel</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($niveles as $index => $nivel)
+            @foreach($grados as $index => $grado)
                 <tr>
                     <td>{{ $index + 1 }}</td>
-                    <td>{{ $nivel->idnivel }}</td>
-                    <td>{{ $nivel->descripcionivel }}</td>
+                    <td>{{ $grado->idgrado }}</td>
+                    <td>{{ $grado->descripciongrado }}</td>
+                    <td>{{ $grado->idnivel }}</td>
                     <td>
-                        <a href="{{ route('niveles.edit', $nivel->idnivel) }}" class="btn btn-primary">Editar</a>
+                        <a href="{{ route('grados.edit', $grado->idgrado) }}" class="btn btn-primary">Editar</a>
                     </td>
                 </tr>
             @endforeach

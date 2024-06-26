@@ -33,4 +33,8 @@ class Persona extends Model
     {
         return $this->belongsTo(Usuario::class, 'idusuario', 'idusuario');
     }
+    public function estudiante()
+    {
+        return $this->hasOne(Estudiantes::class, 'idpersonal','idpersonal');
+    }
 }

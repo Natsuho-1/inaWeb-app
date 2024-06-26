@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>@yield('title', 'Gestión de secciones')</title>
+    <title>@yield('title', 'Gestión de Secciones')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <style>
@@ -23,33 +23,14 @@
         }
 
         .sidebar {
-            height: 100vh;
-            position: fixed;
-            background-color: #343a40 !important;
+            height: auto;
+            position: relative;
+            background-color: #ffffff !important;
         }
 
         .content-area {
-            margin-left: 250px;
             padding: 20px;
             flex: 1;
-        }
-
-        #sidebarMenu {
-            transition: transform 0.3s ease;
-            background-color: #ffffff !important;
-        }
-
-        #sidebarMenu.hidden {
-            transform: translateX(-100%);
-            background-color: #ffffff !important;
-        }
-
-        .main-content {
-            margin-left: 250px;
-        }
-
-        .main-content.hidden {
-            margin-left: 0;
         }
 
         .navbar-custom {
@@ -60,21 +41,10 @@
             color: #000000;
         }
 
-        .sidebar .nav-link:hover,
         .sidebar .nav-link:hover {
             background-color: #9699D6;
         }
 
-        .menu-toggle-custom {
-            background-color: #9699D6;
-            border: none;
-            color: #ffffff;
-        }
-
-        .menu-toggle-custom:hover {
-            background-color: #ffffff;
-            color: #000000;
-        }
         .sidebar .bi {
             margin-right: 8px;
         }
@@ -82,7 +52,7 @@
 </head>
 
 <body>
-    
+    @include('layouts.navbar')
     <div class="container-fluid">
         <div id="sidebarMenu" class="col-md-3 col-lg-2 sidebar">
             <ul class="nav flex-column">
@@ -92,7 +62,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('secciones.create') }}" class="nav-link"><i class="bi bi-patch-plus-fill"></i>
-                        Agregar Seccion</a>
+                        Agregar Sección</a>
                 </li>
             </ul>
         </div>
@@ -102,12 +72,6 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-    <script>
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            document.getElementById('sidebarMenu').classList.toggle('hidden');
-            document.querySelector('.main-content').classList.toggle('hidden');
-        });
-    </script>
 </body>
 
 </html>

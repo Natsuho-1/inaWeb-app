@@ -21,8 +21,7 @@ class Seccion extends Model
         'idaula',
         'idgrupos',
         'idnivel',
-        'estado',
-        'cantidad'
+        'estado'
     ];
 
     public function especialidad()
