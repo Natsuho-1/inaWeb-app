@@ -22,7 +22,7 @@
             <img src="img/iconos_0002_user.jpg" alt="Imagen de la Materia">
             <div class="card-content">
                 <div class="card-title">Estudiantes</div>
-                <button onclick="window.location='{{ route('Estudiantes.index') }}'">ver</button>
+                <button onclick="window.location='{{ route('Estudiantes.alumnos') }}'">ver</button>
             </div>
         </div>
         <div class="card">

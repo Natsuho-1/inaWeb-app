@@ -6,14 +6,32 @@
     <h1>Lista de Estudiantes</h1>
     
     <!-- Formulario de Filtro -->
-    <form method="GET" action="{{ route('students.index') }}" class="mb-3">
+    <form method="GET" action="{{ route('Estudiantes.alumnos') }}" class="mb-3">
         <div class="row">
+            <div class="col-md-3">
+                <label for="grup">Grupo de clase</label>
+                <select name="grup" id="grup" class="form-control">
+                    <option value="">Todas</option>
+                    @foreach($grupos as $grupo)
+                        <option value="{{ $grupo->idgrupos }}" {{ $request->grup == $grupo->idgrupos ? 'selected' : '' }}>{{ $grupo->descripciongrupo }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="grade">Grado</label>
+                <select name="grade" id="grade" class="form-control">
+                    <option value="">Todos</option>
+                    @foreach($grados as $grado)
+                        <option value="{{ $grado->idgrado }}" {{ $request->grade == $grado->idgrado ? 'selected' : '' }}>{{ $grado->descripciongrado }}</option>
+                    @endforeach
+                </select>
+            </div>
             <div class="col-md-3">
                 <label for="specialty">Especialidad</label>
                 <select name="specialty" id="specialty" class="form-control">
                     <option value="">Todas</option>
-                    @foreach($secciones as $seccion)
-                        <option value="{{ $secciones->idseccion }}" {{ $request-> == $especialidad->idespecialidad ? 'selected' : '' }}>{{ $especialidad->nombre }}</option>
+                    @foreach($especialidades as $especialidad)
+                        <option value="{{ $especialidad->idespecialidad }}" {{ $request->specialty == $especialidad->idespecialidad ? 'selected' : '' }}>{{ $especialidad->descripcionspecialidad }}</option>
                     @endforeach
                 </select>
             </div>
@@ -36,7 +54,7 @@
                 <th>ID Estudiante</th>
                 <th>Nombres</th>
                 <th>Apellidos</th>
-                <th>Sección</th>
+                <th>Grupo de Clase</th>
                 <th>Grado</th>
                 <th>Especialidad</th>
                 <th>Acciones</th>
@@ -49,11 +67,12 @@
                     <td>{{ $estudiante->idestudiante }}</td>
                     <td>{{ $estudiante->persona->nombres }}</td>
                     <td>{{ $estudiante->persona->apellidos }}</td>
-                    <td>{{ $estudiante->idseccion }}</td>
-                    <td>{{ $estudiante->grado->nombre }}</td>
-                    <td>{{ $estudiante->especialidad->nombre }}</td>
+                    <td>{{ $estudiante->seccion->grupo->descripciongrupo }}</td>
+                    <td>{{ $estudiante->grado->descripciongrado }}</td>
+                    <td>{{ $estudiante->especialidad->descripcionspecialidad }}</td>
                     <td>
                         <!-- Acciones -->
+                        <a href="{{ route('Estudiantes.edit', $estudiante->idestudiante) }}" class="btn btn-warning">Editar</a>
                     </td>
                 </tr>
             @endforeach
