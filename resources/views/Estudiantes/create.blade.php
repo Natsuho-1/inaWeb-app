@@ -177,7 +177,6 @@
                     @endforeach
                 </div>
             </div>
-        <br>
             <div class="col-6">
                 <div class="form-group">
                     <label class="subti" for="especialidad">Especialidad a la que aspira</label><br>

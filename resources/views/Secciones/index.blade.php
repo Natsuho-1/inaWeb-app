@@ -20,6 +20,8 @@
                 <th>Especialidad</th>
                 <th>Grupo</th>
                 <th>Nivel</th>
+                <th>Capacidad</th>
+                <th>Inscritos</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -32,8 +34,10 @@
                     <td>{{ $seccion->especialidad->descripcionspecialidad ?? 'N/A' }}</td>
                     <td>{{ $seccion->grupo->descripciongrupo ?? 'N/A' }}</td>
                     <td>{{ $seccion->grado->nivel->descripcionivel ?? 'N/A' }}</td>
+                    <td>{{ $seccion->cantidad }}</td>
+                    <td>{{ $seccion->inscritos }}</td>
                     <td>
-                        <a href="{{ route('secciones.edit', $seccion->idseccion) }}" class="btn btn-primary">Editar</a>
+                    <a href="{{ route('secciones.edit', $seccion->idseccion) }}" class="btn btn-primary">Editar</a>
                     </td>
                 </tr>
             @endforeach

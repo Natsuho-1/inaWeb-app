@@ -40,6 +40,8 @@ class SeccionController extends Controller
             'idgrado' => 'required|string|max:6',
             'idespecialidad' => 'required|string|max:6',
             'idgrupo' => 'required|string|max:6',
+            'cantidad' => 'required|string|max:2',
+            
         ]);
     
         // Generar un ID de sección aleatorio de 6 dígitos
@@ -56,6 +58,8 @@ class SeccionController extends Controller
             'idespecialidad' => $request->input('idespecialidad'),
             'idaula' => 'AU0001',
             'idgrupos' => $request->input('idgrupo'),
+            'cantidad' => $request->input('cantidad'),
+            'inscritos' => '0'
             // Otros campos del request pueden ser añadidos aquí si es necesario
         ]);
     
@@ -84,6 +88,7 @@ class SeccionController extends Controller
             'idespecialidad' => 'required|string|max:6',
             'idaula' => 'AU0001',
             'idgrupos' => 'required|string|max:6',
+            'cantidad' => 'required|string|max:2',
         ]);
 
         $seccion = Seccion::findOrFail($idseccion);
