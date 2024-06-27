@@ -57,7 +57,9 @@ class PensumController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $pensum = Pensum::findOrFail($id);
+        $especialidades = Especialidad::all();
+        return view('pensum.edit', compact('pensum', 'especialidades'));
     }
 
     /**
@@ -65,7 +67,18 @@ class PensumController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'idespecialidad' => 'required|string',
+            'nombrepensum' => 'required|string|max:50',
+            'promocion' => 'required|date',
+            'duracion' => 'required|integer',
+            'periodos' => 'required|integer',
+        ]);
+
+        $pensum = Pensum::findOrFail($id);
+        $pensum->update($request->all());
+
+        return redirect()->route('pensum.index')->with('success', 'Pensum actualizado exitosamente.');
     }
 
     /**
