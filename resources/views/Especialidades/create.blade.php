@@ -17,7 +17,7 @@
         </div>
         <div class="form-group mt-3">
             <label for="modalidad">Modalidad</label>
-            <select name="modalidad" class="form-control" required>
+            <select name="modalidad" class="form-select" required>
                 @foreach ($modalidades as $modalidad)
                     <option value="{{ $modalidad }}" {{ old('modalidad') == $modalidad ? 'selected' : '' }}>{{ $modalidad }}</option>
                 @endforeach

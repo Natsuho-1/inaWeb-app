@@ -9,14 +9,15 @@ class Docente extends Model
 {
     use HasFactory;
 
+    protected $table = 'docentes';
     protected $primaryKey = 'iddocente';
     public $incrementing = false;
-    protected $keyType = 'string';
+    public $timestamps = false;
 
     protected $fillable = [
-        'iddocente', 'nombre', 'edad', 'fecha_nacimiento', 'sexo', 'estado_civil', 'direccion', 'telefono_fijo', 'celular', 'celular_clase', 
-        'dui', 'nit', 'nip', 'nivel', 'categoria', 'especialidad', 'fecha_graduacion', 'inpep', 'isss', 'afp', 'nup', 
-        'nacionalidad', 'pasaporte', 'otros_cargos', 'lugar', 'otra_institucion', 'telefono_otrainstitucion', 'turno', 'idseccion', 'idpersonal'
+        'iddocente', 'dui', 'nit', 'nip', 'nivel', 'categoria', 'especialidad',
+        'fecha_graduacion', 'inpep', 'isss', 'afp', 'nup', 'pasaporte', 'otros_cargos',
+        'lugar', 'otra_institucion', 'telefono_otrainstitucion', 'turno', 'idseccion', 'idpersonal'
     ];
 
     public function seccion()
@@ -24,5 +25,8 @@ class Docente extends Model
         return $this->belongsTo(Seccion::class, 'idseccion');
     }
 
-
+    public function persona()
+    {
+        return $this->belongsTo(Persona::class, 'idpersonal');
+    }
 }

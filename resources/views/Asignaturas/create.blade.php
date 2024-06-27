@@ -13,12 +13,13 @@
         </div>
         <div class="mb-3">
             <label for="tipo" class="form-label">Tipo</label>
-            <select name="tipo" class="form-control" required>
+            <select name="tipo" class="form-select" required>
                 @foreach ($tipos as $tipo)
                     <option value="{{ $tipo }}" {{ old('tipo') == $tipo ? 'selected' : '' }}>{{ $tipo }}</option>
                 @endforeach
             </select>
         </div>
+        
         <button type="submit" class="btn btn-success">Guardar</button>
     </form>
 </div>
