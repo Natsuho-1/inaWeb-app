@@ -68,5 +68,6 @@ Route::get('/menus', [MenuController::class, 'menuadmin'])->name('menus.admin');
 //Pensums 
 use App\Http\Controllers\PensumController;
 Route::get('/pensum', [PensumController::class, 'index']);
+Route::resource('pensum', PensumController::class);
 
 

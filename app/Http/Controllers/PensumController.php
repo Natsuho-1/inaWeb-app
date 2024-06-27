@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pensum;
+use App\Models\Especialidad;
 
 class PensumController extends Controller
 {
@@ -21,7 +22,8 @@ class PensumController extends Controller
      */
     public function create()
     {
-        //
+        $especialidades = Especialidad::all();
+        return view('pensum.create', compact('especialidades'));
     }
 
     /**
@@ -29,7 +31,17 @@ class PensumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'idespecialidad' => 'required|string',
+            'nombrepensum' => 'required|string|max:255',
+            'promocion' => 'required|date',
+            'duracion' => 'required|integer',
+            'periodos' => 'required|integer',
+        ]);
+
+        Pensum::create($validatedData);
+
+        return redirect()->route('pensum.index')->with('success', 'Pensum creado exitosamente.');
     }
 
     /**
