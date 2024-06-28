@@ -23,29 +23,21 @@ use Illuminate\Database\Eloquent\Model;
  */
 class PensumAsignatura extends Model
 {
-	protected $table = 'pensum_asignaturas';
-	public $incrementing = false;
-	public $timestamps = false;
+    protected $table = 'pensum_asignaturas';
+    public $incrementing = false; // Deshabilita la auto-incrementación
+    public $timestamps = false;
 
-	protected $casts = [
-		'idpensum' => 'int',
-		'idasignatura' => 'int',
-		'anio' => 'int',
-		'periodo' => 'int'
-	];
+    protected $primaryKey = ['idpensum', 'idasignatura']; // Clave primaria compuesta
 
-	protected $fillable = [
-		'anio',
-		'periodo'
-	];
+    protected $fillable = ['idpensum', 'idasignatura', 'anio', 'periodo']; // Asegúrate de tener los campos adecuados aquí
 
-	public function pensum()
-	{
-		return $this->belongsTo(Pensum::class, 'idpensum');
-	}
+    public function pensum()
+    {
+        return $this->belongsTo(Pensum::class, 'idpensum');
+    }
 
-	public function asignatura()
-	{
-		return $this->belongsTo(Asignatura::class, 'idasignatura');
-	}
+    public function asignatura()
+    {
+        return $this->belongsTo(Asignatura::class, 'idasignatura');
+    }
 }

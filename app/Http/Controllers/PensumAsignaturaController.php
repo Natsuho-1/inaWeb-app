@@ -42,7 +42,6 @@ class PensumAsignaturaController extends Controller
             'anio' => 'required|integer',
             'periodo' => 'required|integer',
         ]);
-
         PensumAsignatura::create([
             'idpensum' => $idpensum,
             'idasignatura' => $request->idasignatura,
@@ -93,9 +92,17 @@ class PensumAsignaturaController extends Controller
      */
     public function destroy($idpensum, $idasignatura)
     {
-        $pensumAsignatura = PensumAsignatura::where('idpensum', $idpensum)->where('idasignatura', $idasignatura)->firstOrFail();
+        // Busca el registro con la clave primaria compuesta
+        $pensumAsignatura = PensumAsignatura::where('idasignatura', $idasignatura)
+            ->firstOrFail();
+
+        // Elimina el registro encontrado
         $pensumAsignatura->delete();
 
-        return redirect()->route('pensum.asignaturas', $idpensum)->with('success', 'Asignatura eliminada exitosamente.');
+        // Redirecciona a la ruta deseada con un mensaje de éxito
+        return redirect()->route('pensum.asignaturas', $idpensum)
+            ->with('success', 'Asignatura eliminada exitosamente.');
     }
+
+
 }
