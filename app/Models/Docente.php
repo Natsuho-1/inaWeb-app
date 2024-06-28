@@ -15,7 +15,7 @@ class Docente extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'iddocente', 'dui', 'nit', 'nip', 'nivel', 'categoria', 'especialidad',
+        'iddocente', 'nit', 'nip', 'nivel', 'categoria', 'especialidad',
         'fecha_graduacion', 'inpep', 'isss', 'afp', 'nup', 'pasaporte', 'otros_cargos',
         'lugar', 'otra_institucion', 'telefono_otrainstitucion', 'turno', 'idseccion', 'idpersonal'
     ];

@@ -13,23 +13,26 @@
     <table class="table mt-3">
         <thead>
             <tr>
+                <th>#</th>
                 <th>ID Docente</th>
-                <th>Nombre del Empleado</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Especialidad</th>
+                <th>Correo Institucional</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($docentes as $docente)
+            @foreach($docentes as $index => $docente)
                 <tr>
+                    <td>{{ $index + 1 }}</td>
                     <td>{{ $docente->iddocente }}</td>
-                    <td>{{ $docente->nombre }}</td>
+                    <td>{{ $docente->persona->nombres }}</td>
+                    <td>{{ $docente->persona->apellidos }}</td>
+                    <td>{{ $docente->especialidad }}</td>
+                    <td>{{ $docente->persona->correoinstitucional }}</td>
                     <td>
                         <a href="{{ route('docentes.edit', $docente->iddocente) }}" class="btn btn-primary">Editar</a>
-                        <form action="{{ route('docentes.destroy', $docente->iddocente) }}" method="POST" style="display:inline-block;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>
                     </td>
                 </tr>
             @endforeach
