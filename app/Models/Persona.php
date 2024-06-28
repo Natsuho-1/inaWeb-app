@@ -23,6 +23,7 @@ class Persona extends Model
         'genero',
         'correopersonal',
         'correoinstitucional',
+        'correopersonal',
         'direccion',
         'nacionalidad',
         'departamento',

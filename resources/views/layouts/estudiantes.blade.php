@@ -86,13 +86,13 @@
         <div id="sidebarMenu" class="col-md-3 col-lg-2 sidebar">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a href="{{ route('Estudiantes.index') }}" class="nav-link"><i class="bi bi-book-half"></i>
+                    <a href="{{ route('Estudiantes.alumnos') }}" class="nav-link"><i class="bi bi-book-half"></i>
                         Estudiantes</a>
                 </li>
-                <li class="nav-item">
+                <!--<li class="nav-item">
                     <a href="{{ route('Estudiantes.create') }}" class="nav-link"><i class="bi bi-patch-plus-fill"></i>
                         Buscar</a>
-                </li>
+                </li>-->
             </ul>
         </div>
         <div class="content-area main-content">

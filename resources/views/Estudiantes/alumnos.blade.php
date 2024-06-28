@@ -72,7 +72,7 @@
                     <td>{{ $estudiante->especialidad->descripcionspecialidad }}</td>
                     <td>
                         <!-- Acciones -->
-                        <a href="{{ route('Estudiantes.edit', $estudiante->idestudiante) }}" class="btn btn-warning">Editar</a>
+                        <a href="{{ route('Estudiantes.editarAlumnos', $estudiante->idestudiante) }}" class="btn btn-warning">Editar</a>
                     </td>
                 </tr>
             @endforeach

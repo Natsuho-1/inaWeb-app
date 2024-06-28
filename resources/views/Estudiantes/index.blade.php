@@ -85,6 +85,7 @@
                 <th>Grado</th>
                 <th>Especialidad</th>
                 <th>Acciones</th>
+                <th>Modificar</th>
             </tr>
         </thead>
         <tbody>
@@ -103,6 +104,9 @@
                             @csrf
                             <button type="submit" class="btn btn-success">Aceptar</button>
                         </form>
+                    </td>
+                    <td>
+                    <a href="{{ route('Estudiantes.edit', $estudiante->idestudiante) }}" class="btn btn-primary">Editar</a>
                     </td>
                 </tr>
             @endforeach
