@@ -34,4 +34,10 @@ class Docente extends Model
     {
         return $this->belongsTo(Especialidad::class, 'especialidad', 'idespecialidad');
     }
+
+
+    public function asignaciones()
+    {
+        return $this->hasMany(AsignacionAsignaturas::class, 'iddocente', 'iddocente');
+    }
 }

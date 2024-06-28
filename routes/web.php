@@ -85,3 +85,10 @@ Route::get('/asignaturas/create', [AsignaturaController::class, 'create'])->name
 Route::post('/asignaturas', [AsignaturaController::class, 'store'])->name('asignaturas.store');
 Route::get('/asignaturas/edit/{id}', [AsignaturaController::class, 'edit'])->name('asignaturas.edit');
 Route::put('/asignaturas/update/{id}', [AsignaturaController::class, 'update'])->name('asignaturas.update');
+
+use App\Http\Controllers\AsignacionAsignaturasController;
+
+Route::resource('asignaturas', AsignaturaController::class);
+Route::get('Asignacion_Asignaturas/create', [AsignacionAsignaturasController::class, 'create'])->name('asignacion_asignaturas.create');
+Route::post('Asignacion_Asignaturas', [AsignacionAsignaturasController::class, 'store'])->name('asignacion_asignaturas.store');
+Route::get('Asignacion_Asignaturas', [AsignacionAsignaturasController::class, 'index'])->name('asignacion_asignaturas.index');
