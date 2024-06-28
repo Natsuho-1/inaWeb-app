@@ -25,6 +25,7 @@
                 <th>Promoción</th>
                 <th>Duración</th>
                 <th>Periodos</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -37,6 +38,15 @@
                     <td>{{ $pensum->promocion ? $pensum->promocion->format('Y-m-d') : 'N/A' }}</td>
                     <td>{{ $pensum->duracion }}</td>
                     <td>{{ $pensum->periodos }}</td>
+                    <td>
+                        <a href="{{ route('pensum.edit', $pensum->idpensum) }}" class="btn btn-primary btn-sm">Editar</a>
+                        <form action="{{ route('pensum.destroy', $pensum->idpensum) }}" method="POST" style="display:inline-block;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que quieres eliminar este pensum?')">Eliminar</button>
+                        </form>
+                        <a href="{{ route('pensum.asignaturas', $pensum->idpensum) }}" class="btn btn-info btn-sm">Asignaturas</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

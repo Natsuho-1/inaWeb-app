@@ -86,6 +86,19 @@ class PensumController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            // Buscar el pensum por su ID
+            $pensum = Pensum::findOrFail($id);
+
+            // Eliminar el pensum
+            $pensum->delete();
+
+            // Redirigir con un mensaje de éxito
+            return redirect()->route('pensum.index')->with('success', 'Pensum eliminado exitosamente.');
+        } catch (\Exception $e) {
+            // Manejar posibles errores
+            return redirect()->route('pensum.index')->with('error', 'Ocurrió un error al intentar eliminar el pensum.');
+        }
     }
+
 }
