@@ -15,12 +15,13 @@ class Persona extends Model
         'idusuario',
         'nombres',
         'apellidos',
-        'fechanacimiento',
+        'fechaNacimiento',
         'identificacion',
         'telefonofijo',
         'telefonomovil',
         'otrotelefono',
         'genero',
+        'correopersonal',
         'correoinstitucional',
         'correopersonal',
         'direccion',
@@ -36,6 +37,10 @@ class Persona extends Model
     }
     public function estudiante()
     {
-        return $this->hasOne(Estudiantes::class, 'idpersonal','idpersonal');
+        return $this->hasOne(Estudiantes::class, 'idpersonal', 'idpersonal');
+    }
+    public function docente()
+    {
+        return $this->hasOne(Docente::class, 'idpersonal', 'idpersonal');
     }
 }
