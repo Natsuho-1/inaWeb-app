@@ -9,6 +9,7 @@ use App\Models\Aula;
 use App\Models\Grado;
 use App\Models\Grupo;
 use App\Models\Nivel;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 class SeccionController extends Controller
@@ -108,7 +109,9 @@ class SeccionController extends Controller
         return view('secciones.edit', compact('seccion','especialidades','grados','grupos'));
     }
 
-    public function update(Request $request, $idseccion)
+ 
+
+public function update(Request $request, $idseccion)
 {
     $seccion = Seccion::findOrFail($idseccion);
 
@@ -118,6 +121,24 @@ class SeccionController extends Controller
     ], [
         'cantidad.min' => 'La capacidad debe ser mayor que el número de estudiantes inscritos (' . $seccion->inscritos . ').'
     ]);
+
+    // Validar que la combinación de grado, especialidad y grupo sea única si no hay estudiantes inscritos
+    if ($seccion->inscritos == 0) {
+        $request->validate([
+            'idgrado' => [
+                'required',
+                Rule::unique('secciones')->where(function ($query) use ($request) {
+                    return $query->where('idgrado', $request->idgrado)
+                                 ->where('idespecialidad', $request->idespecialidad)
+                                 ->where('idgrupos', $request->idgrupos);
+                })->ignore($seccion->idseccion, 'idseccion')
+            ],
+            'idespecialidad' => 'required',
+            'idgrupos' => 'required',
+        ], [
+            'idgrado.unique' => 'Ya existe una seccion de esta especialidad de este grado y con el mismo numero de grupo.'
+        ]);
+    }
 
     // Si la sección tiene estudiantes inscritos, solo permitimos cambiar la capacidad
     if ($seccion->inscritos != 0) {
@@ -134,5 +155,6 @@ class SeccionController extends Controller
 
     return redirect()->route('secciones.index')->with('success', 'Sección actualizada correctamente.');
 }
+
 
 }
