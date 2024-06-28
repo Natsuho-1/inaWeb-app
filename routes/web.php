@@ -8,8 +8,6 @@ Route::get('/especialidades/create', [EspecialidadController::class, 'create'])-
 Route::post('/especialidades', [EspecialidadController::class, 'store'])->name('especialidades.store');
 Route::get('/especialidades/{id}/edit', [EspecialidadController::class, 'edit'])->name('especialidades.edit');
 Route::put('/especialidades/{id}', [EspecialidadController::class, 'update'])->name('especialidades.update');
-Route::get('/especialidades/modify', [EspecialidadController::class, 'modify'])->name('especialidades.modify');
-
 
 use App\Http\Controllers\EstudiantesController;
 
@@ -69,3 +67,19 @@ Route::put('secciones/{seccione}', [SeccionController::class, 'update'])->name('
 use App\Http\Controllers\MenuController;
 
 Route::get('/menus', [MenuController::class, 'menuadmin'])->name('menus.admin');
+
+
+use App\Http\Controllers\DocenteController;
+
+Route::resource('docentes', DocenteController::class);
+
+
+
+// routes/web.php
+use App\Http\Controllers\AsignaturaController;
+
+Route::get('/asignaturas', [AsignaturaController::class, 'index'])->name('asignaturas.index');
+Route::get('/asignaturas/create', [AsignaturaController::class, 'create'])->name('asignaturas.create');
+Route::post('/asignaturas', [AsignaturaController::class, 'store'])->name('asignaturas.store');
+Route::get('/asignaturas/edit/{id}', [AsignaturaController::class, 'edit'])->name('asignaturas.edit');
+Route::put('/asignaturas/update/{id}', [AsignaturaController::class, 'update'])->name('asignaturas.update');
