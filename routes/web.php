@@ -17,6 +17,8 @@ Route::get('/Estudiantes', [EstudiantesController::class, 'index'])->name('Estud
 Route::get('/Estudiantes/create', [EstudiantesController::class, 'create'])->name('Estudiantes.create');
 Route::post('/Estudiantes', [EstudiantesController::class, 'store'])->name('Estudiantes.store');
 Route::get('/Estudiantes/alumnos', [EstudiantesController::class, 'alumno'])->name('Estudiantes.alumnos');
+Route::get('/Estudiantes/{id}/editarAlumnos', [EstudiantesController::class, 'editarAlumnos'])->name('Estudiantes.editarAlumnos');
+Route::put('/Estudiantes/alumnos/{id}', [EstudiantesController::class, 'updateAlumnos'])->name('Estudiantes.updateAlumnos');
 Route::get('/Estudiantes/{id}/edit', [EstudiantesController::class, 'edit'])->name('Estudiantes.edit');
 Route::put('/Estudiantes/{id}', [EstudiantesController::class, 'update'])->name('Estudiantes.update');
 Route::post('/estudiantes/accept', [EstudiantesController::class, 'accept'])->name('Estudiantes.accept');

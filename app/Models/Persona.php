@@ -22,6 +22,7 @@ class Persona extends Model
         'otrotelefono',
         'genero',
         'correoinstitucional',
+        'correopersonal',
         'direccion',
         'nacionalidad',
         'departamento',
