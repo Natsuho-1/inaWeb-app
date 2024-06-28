@@ -1,7 +1,6 @@
 <div class="container">
     <form>
         @csrf
-        <div class="row">
             <div class="mb-3">
                 <div class="row">
                     <div class="col-md-6">
@@ -51,19 +50,17 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-group mt-3">
-                            <label for="nivel_id">Nivel</label>
-                            <select name="nivel_id" class="form-select">
-                                @foreach ($niveles as $nivel)
-                                    <option value="{{ $nivel->idnivel }}"
-                                        {{ old('nivel_id', $docente->nivel_id ?? '') == $nivel->idnivel ? 'selected' : '' }}>
-                                        {{ $nivel->descripcion }}
+                            <label for="nivel">Nivel</label>
+                            <select name="nivel" class="form-select" required>
+                                @foreach($niveles as $nivel)
+                                    <option value="{{ $nivel->idnivel }}" {{ old('nivel', $docente->nivel ?? '') == $nivel->idnivel ? 'selected' : '' }}>
+                                        {{ $nivel->descripcionivel }}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
-                    </div>
                     <div class="col-md-4">
                         <div class="form-group mt-3">
                             <label for="categoria">Categoría</label>
@@ -79,15 +76,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group mt-3">
-                    <label for="especialidad_id">Especialidad</label>
-                    <select name="especialidad_id" class="form-select">
-                        @foreach($especialidades as $especialidad)
-                            <option value="{{ $especialidad->idespecialidad }}" {{ old('especialidad_id', $docente->especialidad_id ?? '') == $especialidad->idespecialidad ? 'selected' : '' }}>
-                                {{ $especialidad->descripcion }}
-                            </option>
-                        @endforeach
-                    </select>
+                <div class="col-md-6">
+                    <div class="form-group mt-3">
+                        <label for="especialidad">Especialidad</label>
+                        <select name="especialidad" class="form-select" required>
+                            @foreach($especialidades as $especialidad)
+                                <option value="{{ $especialidad->idespecialidad }}" {{ old('especialidad', $docente->especialidad ?? '') == $especialidad->idespecialidad ? 'selected' : '' }}>
+                                    {{ $especialidad->descripcionspecialidad }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
@@ -247,7 +246,6 @@
                     <textarea name="direccion" class="form-control">{{ old('direccion') }}</textarea>
                 </div>
             </div>
-        </div>
-        <button type="submit" class="btn btn-primary mt-3">Guardar</button>
+        <button type="submit" class="btn btn-success mt-3">Guardar</button>
     </form>
 </div>

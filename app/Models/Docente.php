@@ -29,4 +29,9 @@ class Docente extends Model
     {
         return $this->belongsTo(Persona::class, 'idpersonal');
     }
+
+    public function especialidad()
+    {
+        return $this->belongsTo(Especialidad::class, 'especialidad', 'idespecialidad');
+    }
 }
