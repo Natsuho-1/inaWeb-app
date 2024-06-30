@@ -32,8 +32,10 @@
                     <td>{{ $asigna->anio }}</td>
                     <td>{{ $asigna->periodo }}</td>
                     <td>
-                        <a href="{{ route('pensum.asignatura.edit', ['idpensum' => $pensum->idpensum, 'idpensumasignaturas' => $asigna->idpensumasignaturas]) }}" class="btn btn-primary btn-sm">Editar</a>
-                        <form action="{{ route('pensum.asignatura.destroy', ['idpensum' => $pensum->idpensum, 'idpensumasignaturas' => $asigna->idpensumasignaturas]) }}" method="POST" style="display:inline-block;">
+                        <a href="{{ route('pensum.asignatura.edit', ['idpensum' => $pensum->idpensum, 'idasignatura' => $asigna->idpensumasignaturas]) }}" class="btn btn-primary btn-sm">Editar</a>
+                        {{$pensum->idpensum}}
+                        {{$asigna->idpensumasignaturas}}
+                        <form action="{{ route('pensum.asignatura.destroy', ['idpensum' => $pensum->idpensum, 'idasignatura' => $asigna->idpensumasignaturas]) }}" method="POST" style="display:inline-block;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que quieres eliminar esta asignatura?')">Eliminar</button>

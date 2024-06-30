@@ -126,14 +126,10 @@ Route::resource('pensum', PensumController::class);
 
 //PensumAsigntaruras
 use App\Http\Controllers\PensumAsignaturaController;
-Route::resource('pensum', PensumController::class);
 
-// Ruta para ver asignaturas
-Route::get('pensum/{id}/asignaturas', [PensumAsignaturaController::class, 'index'])->name('pensum.asignaturas');
-// Rutas para crear y almacenar asignaturas
+Route::get('pensum/{idpensum}/asignaturas', [PensumAsignaturaController::class, 'index'])->name('pensum.asignaturas');
 Route::get('pensum/{idpensum}/asignaturas/create', [PensumAsignaturaController::class, 'create'])->name('pensum.asignatura.create');
 Route::post('pensum/{idpensum}/asignaturas', [PensumAsignaturaController::class, 'store'])->name('pensum.asignatura.store');
-// Rutas para editar y eliminar asignaturas
 Route::get('pensum/{idpensum}/asignaturas/{idasignatura}/edit', [PensumAsignaturaController::class, 'edit'])->name('pensum.asignatura.edit');
 Route::put('pensum/{idpensum}/asignaturas/{idasignatura}', [PensumAsignaturaController::class, 'update'])->name('pensum.asignatura.update');
 Route::delete('pensum/{idpensum}/asignaturas/{idasignatura}', [PensumAsignaturaController::class, 'destroy'])->name('pensum.asignatura.destroy');
