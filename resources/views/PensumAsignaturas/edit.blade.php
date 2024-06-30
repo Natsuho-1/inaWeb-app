@@ -1,4 +1,4 @@
-@extends('layouts.pensum')
+@extends('layouts.pensumasignaturas')
 
 @section('title', 'Editar Asignatura del Pensum')
 
@@ -24,11 +24,17 @@
         </div>
         <div class="mb-3">
             <label for="anio" class="form-label">Año</label>
-            <input type="number" class="form-control" id="anio" name="anio" value="{{ $pensumAsignatura->anio }}" required>
+            <input type="number" class="form-control" id="anio" name="anio" value="{{ $pensumAsignatura->anio }}" max="{{ $pensum->duracion }}" min="1" required>
         </div>
         <div class="mb-3">
             <label for="periodo" class="form-label">Periodo</label>
-            <input type="number" class="form-control" id="periodo" name="periodo" value="{{ $pensumAsignatura->periodo }}" required>
+            <select class="form-select" id="periodo" name="periodo" required>
+                <option value="-1" {{ $pensumAsignatura->periodo == -1 ? 'selected' : '' }}>Sin periodo</option>
+                <option value="0" {{ $pensumAsignatura->periodo == 0 ? 'selected' : '' }}>Todos los periodos</option>
+                @for ($i = 0; $i <= $pensum->periodos; $i++)
+                    <option value="{{ $i+1 }}" {{ $pensumAsignatura->periodo == $i ? 'selected' : '' }}>{{ $i+1 }}</option>
+                @endfor
+            </select>
         </div>
         <button type="submit" class="btn btn-primary">Guardar Cambios</button>
     </form>

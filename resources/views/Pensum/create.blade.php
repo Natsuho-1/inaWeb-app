@@ -29,11 +29,11 @@
         </div>
         <div class="mb-3">
             <label for="duracion" class="form-label">Duración (en años)</label>
-            <input type="number" class="form-control" id="duracion" name="duracion" required>
+            <input type="number" class="form-control" id="duracion" name="duracion" required min="1">
         </div>
         <div class="mb-3">
             <label for="periodos" class="form-label">Periodos</label>
-            <input type="number" class="form-control" id="periodos" name="periodos" required>
+            <input type="number" class="form-control" id="periodos" name="periodos" required min="1">
         </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>

@@ -58,12 +58,14 @@
     <div class="container-fluid">
         <div id="sidebarMenu" class="col-md-3 col-lg-2 sidebar">
             <ul class="nav flex-column">
+                @isset($pensum)
                 <li class="nav-item">
-                    <a href="{{ route('pensum.index') }}" class="nav-link"><i class="bi bi-book-half"></i> Pensum</a>
+                    <a href="{{ route('pensum.index') }}" class="nav-link"><i class="bi bi-arrow-left-circle"></i> Volver al Pensum</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pensum.create') }}" class="nav-link"><i class="bi bi-patch-plus-fill"></i> Agregar Pensum</a>
+                    <a href="{{ route('pensum.asignatura.create', $pensum->idpensum) }}" class="nav-link"><i class="bi bi-patch-plus-fill"></i> Agregar Asignatura</a>
                 </li>
+                @endisset
             </ul>
         </div>
         <div class="content-area main-content">

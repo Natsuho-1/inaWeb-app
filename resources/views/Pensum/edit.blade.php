@@ -30,11 +30,11 @@
         </div>
         <div class="mb-3">
             <label for="duracion" class="form-label">Duración (en años)</label>
-            <input type="number" class="form-control" id="duracion" name="duracion" value="{{ $pensum->duracion }}" required>
+            <input type="number" class="form-control" id="duracion" name="duracion" value="{{ $pensum->duracion }}" min="1" required>
         </div>
         <div class="mb-3">
             <label for="periodos" class="form-label">Periodos</label>
-            <input type="number" class="form-control" id="periodos" name="periodos" value="{{ $pensum->periodos }}" required>
+            <input type="number" class="form-control" id="periodos" name="periodos" value="{{ $pensum->periodos }}" min="1" required>
         </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
