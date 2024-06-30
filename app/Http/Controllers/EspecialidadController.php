@@ -1,38 +1,33 @@
 <?php
 
+// app/Http/Controllers/EspecialidadController.php
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Especialidad;
-use App\Models\Grado;
 use Illuminate\Support\Facades\Log;
 
 class EspecialidadController extends Controller
 {
     protected $modalidades = ['Virtual', 'Presencial', 'A Distancia'];
-    protected $niveles = ['Básica', 'Bachillerato', 'Superior'];
 
     public function index()
     {
-        Log::info('Entrando al método index');
         $especialidades = Especialidad::all();
-        Log::info('Especialidades obtenidas', ['especialidades' => $especialidades]);
         return view('especialidades.index', compact('especialidades'));
     }
+
     public function create()
     {
         $modalidades = $this->modalidades;
-return view('especialidades.create', compact('modalidades'));
+        return view('especialidades.create', compact('modalidades'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
-            'idespecialidad' => 'required|string|max:6|unique:especialidades,idespecialidad',
             'descripcionspecialidad' => 'required|string|max:100',
+            'identificador' => 'required|string|max:4',
             'modalidad' => 'required|string|max:15',
         ]);
 
@@ -42,22 +37,20 @@ return view('especialidades.create', compact('modalidades'));
     }
 
     public function edit($id)
-   
     {
-        Log::info('Entrando al método edit', ['id' => $id]);
         $especialidad = Especialidad::findOrFail($id);
         $modalidades = $this->modalidades;
         return view('especialidades.edit', compact('especialidad', 'modalidades'));
     }
-    
 
     public function update(Request $request, $id)
     {
         Log::info('Datos recibidos en la solicitud', $request->all());
 
         $validatedData = $request->validate([
-            'descripcionspecialidad' => 'required|max:100',
-            'modalidad' => 'required'
+            'descripcionspecialidad' => 'required|string|max:100',
+            'identificador' => 'required|string|max:4',
+            'modalidad' => 'required|string|max:15'
         ]);
 
         Log::info('Datos validados correctamente', $validatedData);

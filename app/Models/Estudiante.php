@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Seccione|null $seccione
  * @property Persona|null $persona
  * @property Collection|Familiare[] $familiares
+ * @property Collection|Voletanota[] $voletanotas
  *
  * @package App\Models
  */
@@ -54,7 +55,7 @@ class Estudiante extends Model
 
 	public function especialidade()
 	{
-		return $this->belongsTo(Especialidad::class, 'idespecialidad');
+		return $this->belongsTo(Especialidade::class, 'idespecialidad');
 	}
 
 	public function grado()
@@ -75,5 +76,10 @@ class Estudiante extends Model
 	public function familiares()
 	{
 		return $this->hasMany(Familiare::class, 'idestudiante');
+	}
+
+	public function voletanotas()
+	{
+		return $this->hasMany(Voletanota::class, 'idestudiante');
 	}
 }

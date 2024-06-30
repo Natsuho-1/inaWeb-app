@@ -18,4 +18,8 @@ class Grupo extends Model
         'descripciongrupo',
         'estado'
     ];
+    public function secciones()
+    {
+        return $this->hasMany(Seccion::class, 'idgrupos');
+    }
 }

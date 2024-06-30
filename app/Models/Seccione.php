@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $idgrupos
  * @property string $idaula
  * @property int $cantidad
+ * @property int $inscritos
  * @property string|null $estado
  * 
  * @property Aula $aula
@@ -38,7 +39,8 @@ class Seccione extends Model
 	public $timestamps = false;
 
 	protected $casts = [
-		'cantidad' => 'int'
+		'cantidad' => 'int',
+		'inscritos' => 'int'
 	];
 
 	protected $fillable = [
@@ -47,6 +49,7 @@ class Seccione extends Model
 		'idgrupos',
 		'idaula',
 		'cantidad',
+		'inscritos',
 		'estado'
 	];
 

@@ -47,12 +47,12 @@ class Pensum extends Model
 
 	public function especialidade()
 	{
-		return $this->belongsTo(Especialidad::class, 'idespecialidad');
+		return $this->belongsTo(Especialidade::class, 'idespecialidad');
 	}
 
 	public function asignaturas()
 	{
 		return $this->belongsToMany(Asignatura::class, 'pensum_asignaturas', 'idpensum', 'idasignatura')
-					->withPivot('anio', 'periodo');
+					->withPivot('idpensumasignaturas', 'anio', 'periodo');
 	}
 }

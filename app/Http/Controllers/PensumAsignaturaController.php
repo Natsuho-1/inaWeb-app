@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Pensum;
 use App\Models\PensumAsignatura;
 use App\Models\Asignatura;
+
 class PensumAsignaturaController extends Controller
 {
     /**
@@ -13,14 +14,15 @@ class PensumAsignaturaController extends Controller
      */
     public function index($id)
     {
-         // Buscar el pensum por su ID
-         $pensum = Pensum::findOrFail($id);
+        // Buscar el pensum por su ID
+        $pensum = Pensum::findOrFail($id);
 
-         // Obtener las asignaturas asociadas a este pensum
-         $asignaturas = PensumAsignatura::where('idpensum', $id)->with('asignatura')->get();
-        
+        // Obtener las asignaturas asociadas a este pensum
+        $asignaturas = PensumAsignatura::where('idpensum', $id)->with('asignatura')->get();
+
         return view('pensumasignaturas.index', compact('pensum', 'asignaturas'));
     }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -28,7 +30,7 @@ class PensumAsignaturaController extends Controller
     {
         $pensum = Pensum::findOrFail($idpensum);
         $asignaturas = Asignatura::all();
-        
+
         return view('pensumasignaturas.create', compact('pensum', 'asignaturas'));
     }
 
@@ -38,10 +40,11 @@ class PensumAsignaturaController extends Controller
     public function store(Request $request, $idpensum)
     {
         $request->validate([
-            'idasignatura' => 'required|integer',
+            'idasignatura' => 'required|string',
             'anio' => 'required|integer',
             'periodo' => 'required|integer',
         ]);
+
         PensumAsignatura::create([
             'idpensum' => $idpensum,
             'idasignatura' => $request->idasignatura,
@@ -51,6 +54,7 @@ class PensumAsignaturaController extends Controller
 
         return redirect()->route('pensum.asignaturas', $idpensum)->with('success', 'Asignatura agregada exitosamente.');
     }
+
     /**
      * Display the specified resource.
      */
@@ -62,26 +66,26 @@ class PensumAsignaturaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($idpensum, $idasignatura)
+    public function edit($idpensum, $idpensumasignaturas)
     {
-        $pensumAsignatura = PensumAsignatura::where('idpensum', $idpensum)->where('idasignatura', $idasignatura)->firstOrFail();
+        $pensumAsignatura = PensumAsignatura::findOrFail($idpensumasignaturas);
         $pensum = Pensum::findOrFail($idpensum);
-        $asignatura = Asignatura::findOrFail($idasignatura);
-        
+        $asignatura = Asignatura::findOrFail($pensumAsignatura->idasignatura);
+
         return view('pensum.edit_asignatura', compact('pensumAsignatura', 'pensum', 'asignatura'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $idpensum, $idasignatura)
+    public function update(Request $request, $idpensum, $idpensumasignaturas)
     {
         $request->validate([
             'anio' => 'required|integer',
             'periodo' => 'required|integer',
         ]);
 
-        $pensumAsignatura = PensumAsignatura::where('idpensum', $idpensum)->where('idasignatura', $idasignatura)->firstOrFail();
+        $pensumAsignatura = PensumAsignatura::findOrFail($idpensumasignaturas);
         $pensumAsignatura->update($request->all());
 
         return redirect()->route('pensum.asignaturas', $idpensum)->with('success', 'Asignatura actualizada exitosamente.');
@@ -90,11 +94,10 @@ class PensumAsignaturaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($idpensum, $idasignatura)
+    public function destroy($idpensum, $idpensumasignaturas)
     {
-        // Busca el registro con la clave primaria compuesta
-        $pensumAsignatura = PensumAsignatura::where('idasignatura', $idasignatura)
-            ->firstOrFail();
+        // Busca el registro por su clave primaria
+        $pensumAsignatura = PensumAsignatura::findOrFail($idpensumasignaturas);
 
         // Elimina el registro encontrado
         $pensumAsignatura->delete();
@@ -103,6 +106,4 @@ class PensumAsignaturaController extends Controller
         return redirect()->route('pensum.asignaturas', $idpensum)
             ->with('success', 'Asignatura eliminada exitosamente.');
     }
-
-
 }
