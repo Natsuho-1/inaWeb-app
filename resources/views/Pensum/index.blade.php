@@ -18,7 +18,6 @@
     <table id="myTable" class="table" style="width:100%">
         <thead>
             <tr>
-                <th>#</th>
                 <th>ID</th>
                 <th>Especialidad</th>
                 <th>Nombre Pensum</th>
@@ -31,9 +30,14 @@
         <tbody>
             @foreach($pensums as $index => $pensum)
                 <tr>
-                    <td>{{ $index + 1 }}</td>
                     <td>{{ $pensum->idpensum }}</td>
-                    <td>{{ $pensum->idespecialidad }}</td>
+                    <td>
+                        @foreach($especialidades as $espe)
+                            @if($pensum->idespecialidad == $espe->idespecialidad)
+                                {{ $espe->descripcionspecialidad }}
+                            @endif
+                        @endforeach
+                    </td>
                     <td>{{ $pensum->nombrepensum }}</td>
                     <td>{{ $pensum->promocion ? $pensum->promocion->format('Y-m-d') : 'N/A' }}</td>
                     <td>{{ $pensum->duracion }}</td>

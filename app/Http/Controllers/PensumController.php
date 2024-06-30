@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pensum;
 use App\Models\Especialidad;
+use App\Models\PensumAsignatura;
 
 class PensumController extends Controller
 {
@@ -14,7 +15,8 @@ class PensumController extends Controller
     public function index()
     {
         $pensums = Pensum::all();
-        return view('pensum.index', compact('pensums'));
+        $especialidades= Especialidad::all();
+        return view('pensum.index', compact('pensums','especialidades'));
     }
 
     /**
@@ -99,6 +101,13 @@ class PensumController extends Controller
             // Manejar posibles errores
             return redirect()->route('pensum.index')->with('error', 'Ocurrió un error al intentar eliminar el pensum.');
         }
+    }
+    public function vistaGrafica($idpensum)
+    {
+        $pensum = Pensum::findOrFail($idpensum);
+        $asignaturas = PensumAsignatura::where('idpensum', $idpensum)->with('asignatura')->get();
+
+        return view('pensumasignaturas.index', compact('pensum', 'asignaturas'));
     }
 
 }

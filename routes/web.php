@@ -133,3 +133,4 @@ Route::post('pensum/{idpensum}/asignaturas', [PensumAsignaturaController::class,
 Route::get('pensum/{idpensum}/asignaturas/{idasignatura}/edit', [PensumAsignaturaController::class, 'edit'])->name('pensum.asignatura.edit');
 Route::put('pensum/{idpensum}/asignaturas/{idasignatura}', [PensumAsignaturaController::class, 'update'])->name('pensum.asignatura.update');
 Route::delete('pensum/{idpensum}/asignaturas/{idasignatura}', [PensumAsignaturaController::class, 'destroy'])->name('pensum.asignatura.destroy');
+Route::get('/vistagrafica/{idpensum}', [PensumController::class, 'vistaGrafica'])->name('pensum.vistagrafica');

@@ -78,4 +78,6 @@ class PensumAsignaturaController extends Controller
 
         return redirect()->route('pensum.asignaturas', $idpensum)->with('success', 'Asignatura eliminada exitosamente.');
     }
+
+
 }

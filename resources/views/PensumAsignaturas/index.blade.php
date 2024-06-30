@@ -28,7 +28,15 @@
                 <tr>
                     <td>{{ $asigna->asignatura->asignatura }}</td>
                     <td>{{ $asigna->anio }}</td>
-                    <td>{{ $asigna->periodo }}</td>
+                    <td>
+                        @if($asigna->periodo == -1)
+                            Sin periodo
+                        @elseif($asigna->periodo == 0)
+                            Todos los periodos
+                        @else
+                            {{ $asigna->periodo }}
+                        @endif
+                    </td>
                     <td>
                         <a href="{{ route('pensum.asignatura.edit', ['idpensum' => $pensum->idpensum, 'idasignatura' => $asigna->idpensumasignaturas]) }}" class="btn btn-primary btn-sm">Editar</a>
                         <form action="{{ route('pensum.asignatura.destroy', ['idpensum' => $pensum->idpensum, 'idasignatura' => $asigna->idpensumasignaturas]) }}" method="POST" style="display:inline-block;">

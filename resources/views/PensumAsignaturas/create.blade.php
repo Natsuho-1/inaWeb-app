@@ -21,7 +21,7 @@
         </div>
         <div class="mb-3">
             <label for="anio" class="form-label">Año</label>
-            <input type="number" class="form-control" id="anio" name="anio" required>
+            <input type="number" class="form-control" id="anio" name="anio" max="{{ $pensum->duracion }}" min="1" required>
         </div>
         <div class="mb-3">
             <label for="periodo" class="form-label">Periodo</label>
