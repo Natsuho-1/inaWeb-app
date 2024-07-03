@@ -107,7 +107,7 @@ class PensumController extends Controller
         $pensum = Pensum::findOrFail($idpensum);
         $asignaturas = PensumAsignatura::where('idpensum', $idpensum)->with('asignatura')->get();
 
-        return view('pensumasignaturas.index', compact('pensum', 'asignaturas'));
+        return view('pensum.vistagrafica', compact('pensum', 'asignaturas'));
     }
 
 }

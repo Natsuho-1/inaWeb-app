@@ -12,6 +12,11 @@
         .table .year {
             font-weight: bold;
         }
+        .no-bullets {
+            list-style-type: none; /* Elimina los puntos de la lista */
+            padding: 0; /* Elimina el padding predeterminado de la lista */
+            margin: 0; /* Elimina el margen predeterminado de la lista */
+        }
     </style>
 @endsection
 
@@ -27,7 +32,7 @@
     <table id="asignaturasTable" class="table" style="width:100%">
         <thead>
             <tr>
-                <th>Asignaturas / Años</th>
+                <th>Años</th>
                 @for ($i = 1; $i <= $pensum->periodos; $i++)
                     <th>
                         @if ($i == 0)
@@ -37,27 +42,36 @@
                         @endif
                     </th>
                 @endfor
-                <th>Sin periodo (-1)</th>
+                <th>Sin periodo</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($pensum->asignaturasPorAnio() as $anio => $asignaturasPorPeriodo)
+            @for ($i = 1; $i <= $pensum->duracion; $i++)
                 <tr>
-                    <td class="year">{{ $anio }}</td>
-                    @for ($i = 1; $i <= $pensum->periodos; $i++)
+                    <td>Año {{$i}}</td>
+                    @for ($j = 1; $j <= $pensum->periodos; $j++)
                         <td>
-                            @foreach ($asignaturasPorPeriodo[$i] ?? [] as $asignatura)
-                                {{ $asignatura->asignatura->asignatura }} <br>
-                            @endforeach
+                            <ul class="no-bullets">
+                                @foreach ($asignaturas as $index => $asig)
+                                    @if($asig->anio == $i && ($asig->periodo == $j || $asig->periodo == 0))
+                                        <li>{{ $asig->asignatura->asignatura }}</li>
+                                    @endif
+                                @endforeach
+                            </ul>
                         </td>
                     @endfor
+                    <!--Asignaturas sin periodos-->
                     <td>
-                        @foreach ($asignaturasPorPeriodo[-1] ?? [] as $asignatura)
-                            {{ $asignatura->asignatura->asignatura }} <br>
-                        @endforeach
+                        <ul class="no-bullets">
+                            @foreach ($asignaturas as $index => $asig)
+                                @if($asig->anio == $i && $asig->periodo == -1)
+                                    <li>{{ $asig->asignatura->asignatura }}</li>
+                                @endif
+                            @endforeach
+                        </ul>
                     </td>
                 </tr>
-            @endforeach
+            @endfor
         </tbody>
     </table>
 </div>
