@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>@yield('title', 'Gestión de Especialidades')</title>
+    <title>@yield('title', 'Gestión de Docentes')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <style>
@@ -57,13 +56,12 @@
         <div id="sidebarMenu" class="col-md-3 col-lg-2 sidebar">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a href="{{ route('especialidades.index') }}" class="nav-link"><i class="bi bi-book-half"></i>
-                        Especialidades</a>
+                    <a href="{{ route('docentes.index') }}" class="nav-link"><i class="bi bi-book-half"></i>
+                        Lista de Docentes</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('especialidades.create') }}" class="nav-link"><i
-                            class="bi bi-patch-plus-fill"></i>
-                        Agregar Especialidad</a>
+                    <a href="{{ route('docentes.create') }}" class="nav-link"><i class="bi bi-patch-plus-fill"></i>
+                        Agregar Docente</a>
                 </li>
             </ul>
         </div>

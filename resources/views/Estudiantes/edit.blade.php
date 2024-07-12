@@ -150,7 +150,12 @@
             <div class="col-4">
                 <div class="form-group">
                     <label for="estadocivil">Estado Civil <span class="opcional">*</span></label>
-                    <input type="text" class="form-control" id="estadocivil"  value="{{$estudiantes->persona->estadocivil}}" name="estadocivil" aria-describedby="Ingresarestadocivil" maxlength="2" placeholder="Ingresar Estado Civil">
+                    <select class="form-select" id="estadocivil" name="estadocivil" required>
+                        @foreach($estadosciviles as $relacion =>$estadocivil)
+                        <option value="{{ $estadocivil }}" {{ $estadocivil == $estudiantes->persona->estadocivil ? 'selected' : '' }}>
+                        {{ $relacion }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
         </div>
@@ -237,7 +242,7 @@
                     @endforeach
                 </div>
             </div>
-            <div class="col-4">
+            <!--<div class="col-4">
                 <div class="form-group">
                     <label for="responsable">Es responsable del aspirante?</label>
                     <br>
@@ -248,7 +253,7 @@
                 </label>
                     @endforeach
                 </div>
-            </div>
+            </div>-->
         </div>
         <br>
         <div class="row">
