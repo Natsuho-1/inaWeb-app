@@ -57,7 +57,7 @@
             <img src="img/iconos_0008_books.jpg" alt="Imagen de la Materia">
             <div class="card-content">
                 <div class="card-title">Pensums</div>
-                <button onclick="">ver</button>
+                <button onclick="window.location='{{ route('pensum.index') }}'">ver</button>
             </div>
         </div>
         <div class="card">
