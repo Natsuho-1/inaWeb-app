@@ -1,5 +1,6 @@
 <?php
 
+// app/Models/Asignatura.php
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -26,13 +27,9 @@ class Asignatura extends Model
         static::creating(function ($model) {
             if (empty($model->idasignatura)) {
                 $lastAsignatura = Asignatura::orderBy('idasignatura', 'desc')->first();
-                $lastIdNumber = $lastAsignatura ? intval(substr($lastAsignatura->idasignatura, 2)) : 0; // Cambiado 4 a 2 para obtener el número después de 'AS'
-                $newIdNumber = $lastIdNumber + 1;
-                $model->idasignatura = 'AS' . str_pad($newIdNumber, 4, '0', STR_PAD_LEFT);
+                $lastIdNumber = $lastAsignatura ? intval(substr($lastAsignatura->idasignatura, 4)) : 0;
+                $model->idasignatura = 'AS00' . ($lastIdNumber + 1);
             }
         });
     }
-
 }
-
-
