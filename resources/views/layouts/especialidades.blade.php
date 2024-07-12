@@ -61,12 +61,9 @@
                         Especialidades</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('especialidades.create') }}" class="nav-link"><i class="bi bi-patch-plus-fill"></i>
+                    <a href="{{ route('especialidades.create') }}" class="nav-link"><i
+                            class="bi bi-patch-plus-fill"></i>
                         Agregar Especialidad</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('especialidades.modify') }}" class="nav-link"><i class="bi bi-pencil-square"></i>
-                        Modificar Especialidad</a>
                 </li>
             </ul>
         </div>

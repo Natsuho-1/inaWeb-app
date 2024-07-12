@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
     <div class="container-fluid justify-content-center position-relative">
-        <a class="navbar-brand mx-auto" href="#">Instituto Nacional de Apopa</a>
+        <div class="container">
+             <a id="Titulo" class="navbar-brand mx-auto" href="#">Instituto Nacional de Apopa</a>
+        </div>
         <button class="navbar-toggler position-absolute end-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

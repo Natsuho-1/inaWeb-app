@@ -8,16 +8,19 @@ Route::get('/especialidades/create', [EspecialidadController::class, 'create'])-
 Route::post('/especialidades', [EspecialidadController::class, 'store'])->name('especialidades.store');
 Route::get('/especialidades/{id}/edit', [EspecialidadController::class, 'edit'])->name('especialidades.edit');
 Route::put('/especialidades/{id}', [EspecialidadController::class, 'update'])->name('especialidades.update');
-Route::get('/especialidades/modify', [EspecialidadController::class, 'modify'])->name('especialidades.modify');
-
 
 use App\Http\Controllers\EstudiantesController;
 
 Route::get('/Estudiantes', [EstudiantesController::class, 'index'])->name('Estudiantes.index');
 Route::get('/Estudiantes/create', [EstudiantesController::class, 'create'])->name('Estudiantes.create');
 Route::post('/Estudiantes', [EstudiantesController::class, 'store'])->name('Estudiantes.store');
+Route::get('/Estudiantes/alumnos', [EstudiantesController::class, 'alumno'])->name('Estudiantes.alumnos');
+Route::get('/Estudiantes/{id}/editarAlumnos', [EstudiantesController::class, 'editarAlumnos'])->name('Estudiantes.editarAlumnos');
+Route::put('/Estudiantes/alumnos/{id}', [EstudiantesController::class, 'updateAlumnos'])->name('Estudiantes.updateAlumnos');
 Route::get('/Estudiantes/{id}/edit', [EstudiantesController::class, 'edit'])->name('Estudiantes.edit');
 Route::put('/Estudiantes/{id}', [EstudiantesController::class, 'update'])->name('Estudiantes.update');
+Route::post('/estudiantes/accept', [EstudiantesController::class, 'accept'])->name('Estudiantes.accept');
+Route::post('Estudiantes/aceptar/{id}', [EstudiantesController::class, 'aceptar'])->name('Estudiantes.aceptar');
 
 //GRUPOS ROUTE
 use App\Http\Controllers\GrupoController;
@@ -58,9 +61,34 @@ use App\Http\Controllers\SeccionController;
 Route::resource('secciones', SeccionController::class);
 Route::put('secciones/{seccione}', [SeccionController::class, 'update'])->name('secciones.update');
 
+
+//Route::get('/students', [EstudiantesController::class, 'index'])->name('students.index');
 //MENUS
 // routes/web.php
 
 use App\Http\Controllers\MenuController;
 
 Route::get('/menus', [MenuController::class, 'menuadmin'])->name('menus.admin');
+
+
+use App\Http\Controllers\DocenteController;
+
+Route::resource('docentes', DocenteController::class);
+
+
+
+// routes/web.php
+use App\Http\Controllers\AsignaturaController;
+
+Route::get('/asignaturas', [AsignaturaController::class, 'index'])->name('asignaturas.index');
+Route::get('/asignaturas/create', [AsignaturaController::class, 'create'])->name('asignaturas.create');
+Route::post('/asignaturas', [AsignaturaController::class, 'store'])->name('asignaturas.store');
+Route::get('/asignaturas/edit/{id}', [AsignaturaController::class, 'edit'])->name('asignaturas.edit');
+Route::put('/asignaturas/update/{id}', [AsignaturaController::class, 'update'])->name('asignaturas.update');
+
+use App\Http\Controllers\AsignacionAsignaturasController;
+
+Route::resource('asignaturas', AsignaturaController::class);
+Route::get('Asignacion_Asignaturas/create', [AsignacionAsignaturasController::class, 'create'])->name('asignacion_asignaturas.create');
+Route::post('Asignacion_Asignaturas', [AsignacionAsignaturasController::class, 'store'])->name('asignacion_asignaturas.store');
+Route::get('Asignacion_Asignaturas', [AsignacionAsignaturasController::class, 'index'])->name('asignacion_asignaturas.index');

@@ -1,5 +1,6 @@
 <?php
 
+// app/Models/Especialidad.php
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,10 +17,24 @@ class Especialidad extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'idespecialidad',
         'descripcionspecialidad',
+        'identificador',
         'modalidad'
     ];
+
+    public $timestamps = false;  // Deshabilitar los timestamps
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $lastSpecialty = Especialidad::orderBy('idespecialidad', 'desc')->first();
+            $lastIdNumber = $lastSpecialty ? intval(substr($lastSpecialty->idespecialidad, 4)) : 0;
+            $model->idespecialidad = 'ES00' . ($lastIdNumber + 1);
+        });
+    }
+
     public function grados()
     {
         return $this->hasMany(Grado::class, 'idespecialidad', 'idespecialidad');
@@ -29,5 +44,5 @@ class Especialidad extends Model
     {
         return $this->hasMany(Seccion::class, 'idespecialidad', 'idespecialidad');
     }
-    public $timestamps = false;  // Deshabilitar los timestamps
 }
+

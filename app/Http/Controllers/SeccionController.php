@@ -9,18 +9,38 @@ use App\Models\Aula;
 use App\Models\Grado;
 use App\Models\Grupo;
 use App\Models\Nivel;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 class SeccionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Obtener todas las secciones con sus relaciones
-        $secciones = Seccion::with(['especialidad','grado','grupo','grado.nivel'])->get();
-
-        // Pasar los datos a la vista
-        return view('secciones.index', compact('secciones'));
+        $query = Seccion::query();
+    
+        if ($request->filled('grado')) {
+            $query->where('idgrado', $request->input('grado'));
+        }
+    
+        if ($request->filled('especialidad')) {
+            $query->where('idespecialidad', $request->input('especialidad'));
+        }
+    
+        if ($request->filled('nivel')) {
+            // Asumiendo que la relación entre grado y nivel está definida en tu modelo de grado
+            $query->whereHas('grado', function ($q) use ($request) {
+                $q->where('idnivel', $request->input('nivel'));
+            });
+        }
+    
+        $secciones = $query->get();
+        $grados = Grado::all();
+        $especialidades = Especialidad::all();
+        $niveles = Nivel::all(); // Asumiendo que tienes un modelo y tabla para los niveles
+    
+        return view('secciones.index', compact('secciones', 'grados', 'especialidades', 'niveles'));
     }
+    
 
     public function create()
     {
@@ -40,27 +60,39 @@ class SeccionController extends Controller
             'idgrado' => 'required|string|max:6',
             'idespecialidad' => 'required|string|max:6',
             'idgrupo' => 'required|string|max:6',
+            'cantidad' => 'required|string|max:2',
+            
         ]);
-    
-        // Generar un ID de sección aleatorio de 6 dígitos
-        $lastSeccion = Seccion::orderBy('idseccion', 'desc')->first();
-        $newIdSeccion = $lastSeccion ? intval($lastSeccion->idseccion) + 1 : 100000; // Iniciar desde 100000 si no hay registros
-        while (Seccion::where('idseccion', $newIdSeccion)->exists()) {
-            $newIdSeccion++;
-        }
-    
-        // Crear la nueva sección con el ID de sección generado y los demás campos del request
-        Seccion::create([
-            'idseccion' => $newIdSeccion,
-            'idgrado' => $request->input('idgrado'),
-            'idespecialidad' => $request->input('idespecialidad'),
-            'idaula' => 'AU0001',
-            'idgrupos' => $request->input('idgrupo'),
-            // Otros campos del request pueden ser añadidos aquí si es necesario
-        ]);
-    
-        return redirect()->route('secciones.index')->with('success', 'Sección creada con éxito.');
-    }
+     // Verificar si ya existe una sección con los mismos valores de grado, especialidad y grupo
+     $existingSeccion = Seccion::where('idgrado', $request->input('idgrado'))
+     ->where('idespecialidad', $request->input('idespecialidad'))
+     ->where('idgrupos', $request->input('idgrupo'))
+     ->first();
+
+ if ($existingSeccion) {
+     return redirect()->back()->withErrors(['duplicate' => 'Ya existe una sección con el mismo grado, especialidad y grupo.']);
+ }
+
+ // Generar un ID de sección aleatorio de 6 dígitos
+ $lastSeccion = Seccion::orderBy('idseccion', 'desc')->first();
+ $newIdSeccion = $lastSeccion ? intval($lastSeccion->idseccion) + 1 : 100000; // Iniciar desde 100000 si no hay registros
+ while (Seccion::where('idseccion', $newIdSeccion)->exists()) {
+     $newIdSeccion++;
+ }
+
+ // Crear la nueva sección con el ID de sección generado y los demás campos del request
+ Seccion::create([
+     'idseccion' => $newIdSeccion,
+     'idgrado' => $request->input('idgrado'),
+     'idespecialidad' => $request->input('idespecialidad'),
+     'idaula' => 'AU0001',
+     'idgrupos' => $request->input('idgrupo'),
+     'cantidad' => $request->input('cantidad'),
+     'inscritos' => 0,
+ ]);
+
+ return redirect()->route('secciones.index')->with('success', 'Sección creada exitosamente.');
+}
     
     // Método para generar un ID aleatorio de 6 dígitos
     private function generateRandomId()
@@ -77,18 +109,52 @@ class SeccionController extends Controller
         return view('secciones.edit', compact('seccion','especialidades','grados','grupos'));
     }
 
-    public function update(Request $request, $idseccion)
-    {
+ 
+
+public function update(Request $request, $idseccion)
+{
+    $seccion = Seccion::findOrFail($idseccion);
+
+    // Validar que la capacidad sea mayor que el número de estudiantes inscritos
+    $request->validate([
+        'cantidad' => 'required|integer|min:' . ($seccion->inscritos + 1),
+    ], [
+        'cantidad.min' => 'La capacidad debe ser mayor que el número de estudiantes inscritos (' . $seccion->inscritos . ').'
+    ]);
+
+    // Validar que la combinación de grado, especialidad y grupo sea única si no hay estudiantes inscritos
+    if ($seccion->inscritos == 0) {
         $request->validate([
-            'idgrado' => 'required|string|max:6',
-            'idespecialidad' => 'required|string|max:6',
-            'idaula' => 'AU0001',
-            'idgrupos' => 'required|string|max:6',
+            'idgrado' => [
+                'required',
+                Rule::unique('secciones')->where(function ($query) use ($request) {
+                    return $query->where('idgrado', $request->idgrado)
+                                 ->where('idespecialidad', $request->idespecialidad)
+                                 ->where('idgrupos', $request->idgrupos);
+                })->ignore($seccion->idseccion, 'idseccion')
+            ],
+            'idespecialidad' => 'required',
+            'idgrupos' => 'required',
+        ], [
+            'idgrado.unique' => 'Ya existe una seccion de esta especialidad de este grado y con el mismo numero de grupo.'
         ]);
-
-        $seccion = Seccion::findOrFail($idseccion);
-        $seccion->update($request->all());
-
-        return redirect()->route('secciones.index')->with('success', 'Sección actualizada con éxito.');
     }
+
+    // Si la sección tiene estudiantes inscritos, solo permitimos cambiar la capacidad
+    if ($seccion->inscritos != 0) {
+        $seccion->cantidad = $request->cantidad;
+    } else {
+        // Si no tiene estudiantes inscritos, permitimos cambiar todos los campos
+        $seccion->idgrado = $request->idgrado;
+        $seccion->idespecialidad = $request->idespecialidad;
+        $seccion->idgrupos = $request->idgrupos;
+        $seccion->cantidad = $request->cantidad;
+    }
+
+    $seccion->save();
+
+    return redirect()->route('secciones.index')->with('success', 'Sección actualizada correctamente.');
+}
+
+
 }
