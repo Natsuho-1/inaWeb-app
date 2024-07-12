@@ -86,6 +86,13 @@ Route::post('/asignaturas', [AsignaturaController::class, 'store'])->name('asign
 Route::get('/asignaturas/edit/{id}', [AsignaturaController::class, 'edit'])->name('asignaturas.edit');
 Route::put('/asignaturas/update/{id}', [AsignaturaController::class, 'update'])->name('asignaturas.update');
 
+use App\Http\Controllers\AsignacionAsignaturasController;
+
+Route::resource('asignaturas', AsignaturaController::class);
+Route::get('Asignacion_Asignaturas/create', [AsignacionAsignaturasController::class, 'create'])->name('asignacion_asignaturas.create');
+Route::post('Asignacion_Asignaturas', [AsignacionAsignaturasController::class, 'store'])->name('asignacion_asignaturas.store');
+Route::get('Asignacion_Asignaturas', [AsignacionAsignaturasController::class, 'index'])->name('asignacion_asignaturas.index');
+
 //Pensums 
 use App\Http\Controllers\PensumController;
 Route::get('/pensum', [PensumController::class, 'index']);
@@ -101,4 +108,3 @@ Route::get('pensum/{idpensum}/asignaturas/{idasignatura}/edit', [PensumAsignatur
 Route::put('pensum/{idpensum}/asignaturas/{idasignatura}', [PensumAsignaturaController::class, 'update'])->name('pensum.asignatura.update');
 Route::delete('pensum/{idpensum}/asignaturas/{idasignatura}', [PensumAsignaturaController::class, 'destroy'])->name('pensum.asignatura.destroy');
 Route::get('/vistagrafica/{idpensum}', [PensumController::class, 'vistaGrafica'])->name('pensum.vistagrafica');
-
