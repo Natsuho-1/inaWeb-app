@@ -130,10 +130,15 @@
     <script>
         $(document).ready(function() {
             $('.asignatura-nombre').on('click', function() {
-                // Ocultar todos los contenedores de acciones
-                $('.asignatura-acciones').hide();
-                // Mostrar el contenedor de acciones asociado con la asignatura clicada
-                $(this).siblings('.asignatura-acciones').toggle();
+                var acciones = $(this).siblings('.asignatura-acciones');
+                if (acciones.is(':visible')) {
+                    acciones.hide();
+                } else {
+                    // Ocultar todos los contenedores de acciones
+                    $('.asignatura-acciones').hide();
+                    // Mostrar el contenedor de acciones asociado con la asignatura clicada
+                    acciones.show();
+                }
             });
         });
     </script>
