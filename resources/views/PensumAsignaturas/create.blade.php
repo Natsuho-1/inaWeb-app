@@ -28,7 +28,7 @@
             <select class="form-select" id="periodo" name="periodo" required>
                 <option value="-1">Sin periodo</option>
                 <option value="0">Todos los periodos</option>
-                @for ($i = 0; $i <= $pensum->periodos; $i++)
+                @for ($i = 0; $i < $pensum->periodos; $i++)
                     <option value="{{ $i+1 }}">{{ $i+1 }}</option>
                 @endfor
             </select>
