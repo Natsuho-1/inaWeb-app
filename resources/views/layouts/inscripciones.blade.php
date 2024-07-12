@@ -23,33 +23,14 @@
         }
 
         .sidebar {
-            height: 100vh;
-            position: fixed;
-            background-color: #343a40 !important;
+            height: auto;
+            position: relative;
+            background-color: #ffffff !important;
         }
 
         .content-area {
-            margin-left: 250px;
             padding: 20px;
             flex: 1;
-        }
-
-        #sidebarMenu {
-            transition: transform 0.3s ease;
-            background-color: #ffffff !important;
-        }
-
-        #sidebarMenu.hidden {
-            transform: translateX(-100%);
-            background-color: #ffffff !important;
-        }
-
-        .main-content {
-            margin-left: 250px;
-        }
-
-        .main-content.hidden {
-            margin-left: 0;
         }
 
         .navbar-custom {
@@ -60,21 +41,10 @@
             color: #000000;
         }
 
-        .sidebar .nav-link:hover,
         .sidebar .nav-link:hover {
             background-color: #9699D6;
         }
 
-        .menu-toggle-custom {
-            background-color: #9699D6;
-            border: none;
-            color: #ffffff;
-        }
-
-        .menu-toggle-custom:hover {
-            background-color: #ffffff;
-            color: #000000;
-        }
         .sidebar .bi {
             margin-right: 8px;
         }

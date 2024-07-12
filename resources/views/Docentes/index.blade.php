@@ -18,6 +18,7 @@
                 <th>Nombres</th>
                 <th>Apellidos</th>
                 <th>Especialidad</th>
+                <th>Nivel</th>
                 <th>Correo Institucional</th>
                 <th>Acciones</th>
             </tr>
@@ -30,6 +31,7 @@
                     <td>{{ $docente->persona->nombres }}</td>
                     <td>{{ $docente->persona->apellidos }}</td>
                     <td>{{ $docente->especialidad }}</td>
+                    <td>{{ $docente->nivel }}</td>
                     <td>{{ $docente->persona->correoinstitucional }}</td>
                     <td>
                         <a href="{{ route('docentes.edit', $docente->iddocente) }}" class="btn btn-primary">Editar</a>
@@ -40,3 +42,4 @@
     </table>
 </div>
 @endsection
+
